@@ -1,0 +1,83 @@
+@use './mixins.module.scss' as mixins;
+// Variables
+:root {
+  --primaryColor: 234, 233, 227;
+  --secondaryColor: 0, 22, 77;
+  --accentColor: 254, 219, 102;
+  --white: 252, 251, 251;
+
+  --orange: 255, 196, 80;
+  --red: 176, 79, 79;
+  
+  --smallRadius: 5px;
+  --bigRadius: 10px;
+
+}
+
+
+// Fonts
+@font-face {
+  font-family: RozhaOne;
+  src: url(./fonts/RozhaOne-Regular.ttf);
+}
+
+@font-face {
+  font-family: Roboto;
+  letter-spacing: 5px;
+  src: url(./fonts/Roboto-Light.ttf);
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: Roboto;
+}
+
+html,
+body {
+  @include mixins.body();
+}
+
+// Default styles
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.link {
+  color: rgb(var(--secondaryColor), 0.8);
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+
+  &:hover{
+    color: rgb(var(--secondaryColor));
+    text-decoration: underline;
+  }
+}
+
+main{
+  @include mixins.main();
+}
+
+label{
+    font-family: Roboto;
+    color: rgb(var(--secondaryColor));
+    font-size: 14px;
+}
+
+input{
+  font-family: Roboto;
+  font-size: 14px;
+  background-color:transparent;
+  border: 0;
+  border-bottom: 1px solid rgb(var(--secondaryColor));
+  box-shadow: none;
+  margin-bottom: 15px;
+  height: 30px;
+  width: 250px;
+}
+
+
+

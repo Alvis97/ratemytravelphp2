@@ -1,0 +1,165 @@
+@use "../mixins.module.scss" as mixins;
+
+.parent{
+    width: 100vw;
+    height: 60px;
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    background-color: rgb(var(--primaryColor));
+    margin: 0;
+    position: fixed
+    
+}
+
+
+@media (max-width: 800px){
+    .parent{
+     display: none;
+    }
+ } 
+
+.section1{
+    width: 300px;
+    height: 60px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.section2{
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.section3{
+    width: 300px;
+    height: 60px;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+@media (max-width: 800px){
+    .section3{
+     display: none;
+    }
+ }
+
+.CFAButton{
+    @include mixins.CFAButton();
+    margin: 0 20px;
+}
+
+
+.link {
+    color: rgb(var(--secondaryColor)); /* Sets the default color for links */
+    text-decoration: none;
+    margin: 0 5px;
+    letter-spacing: 1px;
+    transition: .25s ease;
+  
+    &:hover {
+      text-decoration: underline; /* Adds underline on hover */
+    }
+  }
+  
+  .ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style-type: none;
+    
+    li {
+      margin-left: .45em;
+      margin-right: .45em;
+    }
+    
+    &:hover {
+      .link {
+        color: rgb(var(--secondaryColor), 0.5); /* Fades other links */
+        &:hover {
+          color: rgb(var(--secondaryColor)); /* Keeps hovered link dark blue */
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  .span{
+    margin: 0 3px 0 10px;
+  }
+
+  .link{
+    background-color: none;
+    border: 0;
+  }
+
+  
+  .exitBtn{
+    @include mixins.exitBtn();
+  }
+
+  .h1{
+    display: block;
+    text-align: center;
+    margin: 20px 0 30px;
+    font-family: RozhaOne;
+    color: rgb(var(--secondaryColor));
+  }
+
+ form{
+    .CFAButton{
+        width: 150px;
+        display: block;
+        margin: auto;
+        margin-bottom: 20px;
+       
+    }
+ }
+
+ .para{
+    font-size: 16px;
+    display: block;
+    margin: auto;
+ }
+
+ .socials{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .para{
+        font-size: 14px;
+        color: rgb(var(--secondaryColor));
+    }
+
+    .signUp{
+        font-family: rozhaOne;
+    }
+ }
+
+ .socialIcons{
+    display: flex;
+    margin-bottom: 50px;
+ }
+
+ .signUp{
+    border: none;
+    cursor: pointer;
+    @include mixins.link();
+ }
+
+ .linkBtn {
+    @include mixins.link();
+    border: 0;
+    font-size: 16px;
+    background-color: transparent;
+    color: rgb(var(--secondaryColor));
+
+  }
+
+
+  
+ 
