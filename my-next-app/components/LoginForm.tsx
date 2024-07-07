@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
-import { validateLoginForm } from '../utils/formValidation';
-import navigationStyle from '../styles/navigation.module.scss';
+import useLoginForm, { validateLoginForm } from "../utils/formValidation";
+import formStyle from '../styles/components/formStyle.module.scss';
+
+// Define FormErrors interface here or in formValidation.tsx if used there as well
+interface FormErrors {
+  email?: string;
+  password?: string;
+}
 
 const LoginForm: React.FC = () => {
   const [formData, setFormData] = useState({ email: '', password: '' });
@@ -52,7 +58,7 @@ const LoginForm: React.FC = () => {
         />
         {errors.password && <div className="error">{errors.password}</div>}
       </div>
-      <button type="submit" className={navigationStyle.CFAButton}>
+      <button type="submit" className={formStyle.CFAButton}>
         Login
       </button>
     </form>
@@ -61,9 +67,5 @@ const LoginForm: React.FC = () => {
 
 export default LoginForm;
 
-interface FormErrors {
-  email?: string;
-  password?: string;
-}
 
 

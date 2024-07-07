@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
-import navigationStyle from '../styles/navigation.module.scss'; // Adjust path as per your project structure
+import formStyle from '../styles/components/formStyle.module.scss';
 
 const SignUpForm: React.FC = () => {
     const router = useRouter();
@@ -47,7 +47,7 @@ const SignUpForm: React.FC = () => {
 
     return (
         <>
-          <h1 className={navigationStyle.h1}>Sign Up</h1>
+          <h1 className={formStyle.h1}>Sign Up</h1>
           <form onSubmit={handleSubmit}>
             <label htmlFor="fName">First Name</label><br />
             <input
@@ -103,18 +103,18 @@ const SignUpForm: React.FC = () => {
               onChange={handleChange}
               placeholder="*********"
             /><br />
-            <button type="submit" className={navigationStyle.CFAButton}>
+            <button type="submit" className={formStyle.CFAButton}>
               Sign Up
             </button>
           </form>
-          <div className={navigationStyle.socials}>
-            <p className={navigationStyle.para}>Or Sign Up With</p><br />
-            <div className={navigationStyle.socialIcons}>
+          <div className={formStyle.socials}>
+            <p className={formStyle.para}>Or Sign Up With</p><br />
+            <div className={formStyle.socialIcons}>
               <button>Icon</button>
               <button>Icon</button>
             </div>
-            <p className={navigationStyle.para}>Already have an account?</p>
-            <button onClick={() => router.push('/login')} className={navigationStyle.signUp}>
+            <p className={formStyle.para}>Already have an account?</p>
+            <button onClick={() => router.push('/login')} className={formStyle.signUp}>
               Login
             </button><br />
           </div>
