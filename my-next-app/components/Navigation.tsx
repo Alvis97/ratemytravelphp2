@@ -1,10 +1,16 @@
 import Link from "next/link";
 import React, { useState } from "react";
-import navigationStyle from "../styles/components/navigation.module.scss";
 import { LogoSmall } from "./Icons";
 import Modal from "./Modal";
+import LoginForm from "./LoginForm";
+
+//Styles
+import navigationStyle from "../styles/components/navigation.module.scss";
+import SignUpForm from "./SignUpForm";
 
 
+
+//modal that is opening for login and signup
 const Navigation: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalType, setModalType] = useState<"login" | "signup">("login");
@@ -48,62 +54,11 @@ const Navigation: React.FC = () => {
           <button onClick={closeModal} className={navigationStyle.exitBtn}>X</button>
           {modalType === "login" ? (
             <>
-              <h1 className={navigationStyle.h1}>Login</h1>
-              <form action="">
-                <label htmlFor="email">Email</label><br />
-                <input type="text" name="email" id="email" placeholder="example@hotmail.com" /><br />
-                <label htmlFor="pwd">Password</label><br />
-                <input type="password" name="pwd" id="pwd" placeholder="*********" /><br />
-                <button type="submit" className={navigationStyle.CFAButton}>
-                  Login
-                </button>
-              </form>
-              <div className={navigationStyle.socials}>
-                <p className={navigationStyle.para}>Or Login With</p><br />
-                <div className={navigationStyle.socialIcons}>
-                  <button>Icon</button>
-                  <button>Icon</button>
-                </div>
-                <p className={navigationStyle.para}>No Account?</p>
-                <button onClick={() => openModal("signup")} className={navigationStyle.signUp}>Sign Up</button><br />
-              </div>
+              <LoginForm/>
             </>
           ) : (
             <>
-              <h1 className={navigationStyle.h1}>Sign Up</h1>
-              <form action="">
-                <label htmlFor="fName">Name</label><br />
-                <input type="text" name="fName" id="fName" placeholder="Sam" /><br />
-                <label htmlFor="lName">Lastname</label><br />
-                <input type="text" name="lName" id="lName" placeholder="Borg" /><br />
-                <label htmlFor="age">Age</label><br />
-                <input type="text" name="age" id="age" placeholder="22" /><br />
-                <label htmlFor="gender">Gender</label><br />
-                <select name="gender" id="gender">
-                  <option value="cis-woman">Cis woman</option>
-                  <option value="non-binary">Non-binary</option>
-                  <option value="trans-m-f">Transgender (M-F)</option>
-                  <option value="trans-f-m">Transgender (F-M)</option>
-                  <option value="queer">Queer</option>
-                  <option value="other">Other</option>
-                </select><br />
-                <label htmlFor="email">Email</label><br />
-                <input type="text" name="email" id="email" placeholder="example@hotmail.com" /><br />
-                <label htmlFor="pwd">Password</label><br />
-                <input type="password" name="pwd" id="pwd" placeholder="*********" /><br />
-                <button type="submit" className={navigationStyle.CFAButton}>
-                  Sign Up
-                </button>
-              </form>
-              <div className={navigationStyle.socials}>
-                <p className={navigationStyle.para}>Or Sign Up With</p><br />
-                <div className={navigationStyle.socialIcons}>
-                  <button>Icon</button>
-                  <button>Icon</button>
-                </div>
-                <p className={navigationStyle.para}>Already have an account?</p>
-                <button onClick={() => openModal("login")} className={navigationStyle.signUp}>Login</button><br />
-              </div>
+              <SignUpForm/>
             </>
           )}
         </Modal>

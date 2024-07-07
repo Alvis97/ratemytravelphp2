@@ -1,6 +1,6 @@
 import Head from "next/head";
 import React from "react";
-import HamburgerMenu from "@/components/hamburgerMenu";
+import HamburgerMenu from "../components/HamburgerMenu";
 
 export default function About() {
   

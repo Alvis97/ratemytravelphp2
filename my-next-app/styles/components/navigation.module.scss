@@ -8,8 +8,7 @@
     align-items: center;
     background-color: rgb(var(--primaryColor));
     margin: 0;
-    position: fixed
-    
+    position: fixed 
 }
 
 
@@ -52,7 +51,6 @@
     @include mixins.CFAButton();
     margin: 0 20px;
 }
-
 
 .link {
     color: rgb(var(--secondaryColor)); /* Sets the default color for links */

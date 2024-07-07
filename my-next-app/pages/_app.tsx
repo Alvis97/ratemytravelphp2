@@ -1,8 +1,10 @@
 
-import HamburgerMenu from "@/components/HamburgerMenu";
-import Navigation from "@/components/Navigation";
-import "@/styles/globals.scss";
+import React from "react";
+import HamburgerMenu from "../components/HamburgerMenu";
+import Navigation from "../components/Navigation";
 import Head from "next/head";
+import '../styles/globals.scss'; 
+
 
 export default function App({ Component, pageProps }) {
   return (
