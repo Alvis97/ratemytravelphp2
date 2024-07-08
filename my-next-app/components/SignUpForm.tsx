@@ -3,7 +3,9 @@ import { useRouter } from 'next/router';
 import formStyle from '../styles/components/formStyle.module.scss';
 
 const SignUpForm: React.FC = () => {
+    //router- navigate from different pages
     const router = useRouter();
+    //formdata where we gonna store the user input
     const [FormData, setFormData] = useState({
         fName: '',
         lName: '',
@@ -13,6 +15,7 @@ const SignUpForm: React.FC = () => {
         pwd: '',
     });
 
+    //Taking what the user put into the form and put it into formData
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFormData({
             ...FormData,
@@ -20,18 +23,29 @@ const SignUpForm: React.FC = () => {
         });
     };
 
+    //send it away when pressing "submit"
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        try {
+         
 
-            const response = await fetch('/api/signup', {
+        //storing the response from the api
+        try {
+            const response = await fetch('/api/signUp', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(FormData),
             });
+
+            console.log('Response status:', response.status);
+
+            const responseText = await response.text();
+            console.log('Raw response text:', responseText);
+
+             // Log the request method
+          console.log('Request method:', response.url, response.status);
 
             if (response.ok) {
                 const data = await response.json();

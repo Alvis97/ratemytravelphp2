@@ -21,7 +21,7 @@ model User {
   age              Int
   gender           String
   password         String
-  Image            String
+  Image            String?
   visitedCountries VisitedCountry[] // Define the relation
   accounts         Account[]
 }
