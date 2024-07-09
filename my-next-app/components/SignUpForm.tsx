@@ -1,122 +1,204 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import formStyle from '../styles/components/formStyle.module.scss';
+import   { SignUpFormErrors, validateSignUpForm } from '../utils/formValidation';
 
-const SignUpForm: React.FC = () => {
-    //router- navigate from different pages
-    const router = useRouter();
-    //formdata where we gonna store the user input
-    const [FormData, setFormData] = useState({
-        fName: '',
-        lName: '',
-        age: '',
-        gender: '',
-        email: '',
-        pwd: '',
+
+
+interface SignUpFormProps {
+  closeModal: () => void;
+}
+
+export interface FormErrors {
+  [key: string]: string | undefined;
+}
+
+const SignUpForm: React.FC<SignUpFormProps> = ({ closeModal }) => {
+  const router = useRouter();
+
+  // Form data and errors state
+  const [formData, setFormData] = useState({
+    fName: '',
+    lName: '',
+    age: '',
+    gender: '',
+    email: '',
+    pwd: '',
+    avatar: '',
+  });
+
+  const [errors, setErrors] = useState<SignUpFormErrors>({});
+
+  // State to manage selected avatar
+  const [selectedAvatar, setSelectedAvatar] = useState<string>('');
+
+  // Handle input change
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
     });
+  };
 
-    //Taking what the user put into the form and put it into formData
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setFormData({
-            ...FormData,
-            [e.target.name]: e.target.value,
-        });
+  // Handle avatar selection change
+  const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSelectedAvatar(e.target.value);
+  };
+
+  // Handle form submission
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    // Validate form data
+    const validationErrors = validateSignUpForm(formData);
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return; // Exit early if there are validation errors
+    }
+
+    // Include selected avatar in form data
+    const formDataWithAvatar = {
+      ...formData,
+      avatar: selectedAvatar,
     };
 
-    //send it away when pressing "submit"
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
+    console.log('Submitting form data:', formDataWithAvatar);
 
-         
+    // Send form data to the server
+    try {
+      const response = await fetch('/api/signUp', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formDataWithAvatar),
+      });
 
-        //storing the response from the api
-        try {
-            const response = await fetch('/api/signUp', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(FormData),
-            });
+      console.log('Response status:', response.status);
+      const responseData = await response.json();
+      console.log('Response data:', responseData);
 
-            console.log('Response status:', response.status);
+      if (response.ok) {
+        console.log('Sign-up successful');
+        closeModal();
+        router.push('/features'); // Redirect to the features page on successful sign-up
+      } else {
+        throw new Error('Sign-up failed');
+      }
+    } catch (error) {
+      console.error('Error signing up:', error);
+    }
+  };
 
-            const responseText = await response.text();
-            console.log('Raw response text:', responseText);
 
-             // Log the request method
-          console.log('Request method:', response.url, response.status);
-
-            if (response.ok) {
-                const data = await response.json();
-                console.log('Sign-up successful', data);
-                router.push('/success');
-            } else {
-                throw new Error('Sign-up failed');
-            }
-        }catch (error) {
-            console.error('Error signing up:', error);
-        }
-    };
 
     return (
         <>
-          <h1 className={formStyle.h1}>Sign Up</h1>
+        <div className={formStyle.formDiv}>
+        <h1 className={formStyle.h1}>Sign Up</h1>
           <form onSubmit={handleSubmit}>
             <label htmlFor="fName">First Name</label><br />
             <input
               type="text"
               name="fName"
               id="fName"
-              value={FormData.fName}
+              value={formData.fName}
               onChange={handleChange}
               placeholder="Sam"
             /><br />
+             {errors.fName && <p className={formStyle.error}>{errors.fName}</p>}
             <label htmlFor="lName">Last Name</label><br />
             <input
               type="text"
               name="lName"
               id="lName"
-              value={FormData.lName}
+              value={formData.lName}
               onChange={handleChange}
               placeholder="Borg"
             /><br />
+             {errors.lName && <p className={formStyle.error}>{errors.lName}</p>}
             <label htmlFor="age">Age</label><br />
             <input
               type="text"
               name="age"
               id="age"
-              value={FormData.age}
+              value={formData.age}
               onChange={handleChange}
               placeholder="22"
             /><br />
-            <label htmlFor="gender">Gender</label><br />
-            <input
-              type="text"
-              name="gender"
-              id="gender"
-              value={FormData.gender}
-              onChange={handleChange}
-              placeholder="Male/Female/Other"
-            /><br />
+             {errors.age && <p className={formStyle.error}>{errors.age}</p>}
+              <label htmlFor="gender">Gender</label><br />
+                <select
+                    name="gender"
+                    id="gender"
+                    value={formData.gender}
+                    onChange={handleChange}
+                >
+                    <option value="">Select Gender</option>
+                    <option value="Cis Woman">Cis Woman</option>
+                    <option value="Transgender (MF)">Transgender (MF)</option>
+                    <option value="Transgender (FM)">Transgender (FM)</option>
+                    <option value="Queer">Queer</option>
+                    <option value="Non binary">Non binary</option>
+                    <option value="Other">Other</option>
+                </select><br />
+                <p>This app is for non Cis men</p>
+                {errors.gender && <p className={formStyle.error}>{errors.gender}</p>}
             <label htmlFor="email">Email</label><br />
             <input
               type="text"
               name="email"
               id="email"
-              value={FormData.email}
+              value={formData.email}
               onChange={handleChange}
               placeholder="example@hotmail.com"
             /><br />
+             {errors.email && <p className={formStyle.error}>{errors.email}</p>}
             <label htmlFor="pwd">Password</label><br />
             <input
               type="password"
               name="pwd"
               id="pwd"
-              value={FormData.pwd}
+              value={formData.pwd}
               onChange={handleChange}
               placeholder="*********"
             /><br />
+           {errors.pwd && <p className={formStyle.error}>{errors.pwd}</p>}
+            <label htmlFor="avatar">Choose an Avatar</label><br />
+                <div>
+                    <label>
+                        <input
+                            type="radio"
+                            name="avatar"
+                            value="avatar1.jpg"
+                            checked={selectedAvatar === 'avatar1.jpg'}
+                            onChange={handleAvatarChange}
+                        />
+                        <img src="/images/avatar1.jpg" alt="Avatar 1" />
+                    </label>
+                    <label>
+                        <input
+                            type="radio"
+                            name="avatar"
+                            value="avatar2.jpg"
+                            checked={selectedAvatar === 'avatar2.jpg'}
+                            onChange={handleAvatarChange}
+                        />
+                        <img src="/images/avatar2.jpg" alt="Avatar 2" />
+                    </label>
+                    <label>
+                        <input
+                            type="radio"
+                            name="avatar"
+                            value="avatar3.jpg"
+                            checked={selectedAvatar === 'avatar3.jpg'}
+                            onChange={handleAvatarChange}
+                        />
+                        <img src="/images/avatar3.jpg" alt="Avatar 3" />
+                    </label>
+                </div><br />
+
+
             <button type="submit" className={formStyle.CFAButton}>
               Sign Up
             </button>
@@ -128,12 +210,26 @@ const SignUpForm: React.FC = () => {
               <button>Icon</button>
             </div>
             <p className={formStyle.para}>Already have an account?</p>
-            <button onClick={() => router.push('/login')} className={formStyle.signUp}>
+            <button onClick={()=> router.push('/login')} className={formStyle.signUp}>
               Login
             </button><br />
-          </div>
+
+        </div>
+        </div>
+         
+
+            <div className={formStyle.Success}>
+              <h2>Welcome to rate my travel!</h2>
+              <h3>You are now ready to log in</h3>
+              <button> Log in here </button>
+            </div>
+          
         </>
       );
     };
     
     export default SignUpForm;
+
+function closeModal(): void {
+  throw new Error('Function not implemented.');
+}

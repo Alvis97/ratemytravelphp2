@@ -18,10 +18,10 @@ model User {
   email            String          @unique
   firstName        String
   lastName         String
-  age              Int
+  age              String
   gender           String
   password         String
-  Image            String?
+  Image            String
   visitedCountries VisitedCountry[] // Define the relation
   accounts         Account[]
 }

@@ -57,3 +57,17 @@ form{
     font-family: RozhaOne;
     color: rgb(var(--secondaryColor));
   }
+
+  .formDiv{
+   display: block;
+  }
+
+  .Success{
+   display: none;
+   position: relative;
+   z-index: 2000;
+   padding: 20px;
+   width: 100%;
+   height: 100%;
+   top: 0;
+  }

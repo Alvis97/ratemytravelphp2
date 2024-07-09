@@ -11,6 +11,17 @@ dotenv.config();
 //will be interacting with database
 const prisma = new PrismaClient();
 
+// Function to check the database connection
+async function checkDatabaseConnection() {
+  try {
+    await prisma.$connect();
+    console.log('Connected to the database successfully.');
+  } catch (error) {
+    console.error('Failed to connect to the database:', error);
+    throw new Error('Database connection failed');
+  }
+}
+
 //Handles http request                    request, respose
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   console.log('Received request:', req.method, req.url);
@@ -18,10 +29,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   if (req.method === 'POST') {
     //storing all input values from the body
-    const { email, fName, lName, age, gender, pwd } = req.body;
+    const {  fName, lName, age, gender, email, pwd, avatar } = req.body;
+
+      // Check database connection
+ // try {
+  //  await checkDatabaseConnection();
+  //} catch (error) {
+   // return res.status(500).json({ error: 'Database connection failed' });
+  // }
 
     try {
-      console.log('Received data:', { email, fName, lName, age, gender, pwd });
+      console.log('Received data:', { email, fName, lName, age, gender, pwd, avatar });
 
       // Hash the password
       const hashedPassword = await bcrypt.hash(pwd, 10);
@@ -29,13 +47,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       // Create new user
       const user = await prisma.user.create({
         data: {
-          email: email,
+          
           firstName: fName,
           lastName: lName,
           age: age,
           gender: gender,
+          email: email,
           password: hashedPassword,
-          Image: '', // Default value for Image
+          Image: avatar, // Default value for Image
         },
       });
 

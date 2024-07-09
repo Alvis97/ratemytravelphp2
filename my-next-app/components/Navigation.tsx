@@ -8,8 +8,6 @@ import LoginForm from "./LoginForm";
 import navigationStyle from "../styles/components/navigation.module.scss";
 import SignUpForm from "./SignUpForm";
 
-
-
 //modal that is opening for login and signup
 const Navigation: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -53,12 +51,11 @@ const Navigation: React.FC = () => {
         <Modal onClose={closeModal}>
           <button onClick={closeModal} className={navigationStyle.exitBtn}>X</button>
           {modalType === "login" ? (
-            <>
-              <LoginForm/>
-            </>
+              <LoginForm closeModal={closeModal} />
+            
           ) : (
             <>
-              <SignUpForm/>
+              <SignUpForm closeModal={closeModal} />
             </>
           )}
         </Modal>
