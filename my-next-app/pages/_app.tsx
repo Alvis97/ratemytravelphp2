@@ -1,21 +1,18 @@
+// pages/_app.tsx
+import React from 'react';
+import type { AppProps } from 'next/app';
+import { AuthProvider } from '../context/AuthContext';
+import Navigation from '../components/Navigation';
+import '../styles/globals.scss';
 
-import React from "react";
-import HamburgerMenu from "../components/HamburgerMenu";
-import Navigation from "../components/Navigation";
-import Head from "next/head";
-import '../styles/globals.scss'; 
-
-
-export default function App({ Component, pageProps }) {
+function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <>
-      <Head>
-        <title>Rate My Travels</title>
-        {/* Add any other global head tags here */}
-      </Head>
-      <Navigation/>
-      <HamburgerMenu />
+    <AuthProvider>
+      <Navigation />
       <Component {...pageProps} />
-    </>
+    </AuthProvider>
   );
 }
+
+export default MyApp;
+

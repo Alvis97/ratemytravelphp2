@@ -1,15 +1,23 @@
 import React from "react";
 import Head from "next/head";
+import Post from "../components/Post";
 
-export default function Home() {
+//Style
+import SuccessStyle from "../";
+
+export default function Success() {
     return(
         <>
         <Head>
            <title>Success</title>
         </Head>
         <main>
-            <div>
-                <h1>Success Page</h1>
+            <div className={SuccessStyle.Parent}>
+                <div className={SuccessStyle.} >
+
+                </div>
+              <Post/>
+              <Post/>
 
             </div>
         </main>

@@ -1,9 +1,10 @@
-@use './mixins.module.scss' as mixins;
+@use './mixins.scss' as mixins;
 // Variables
 :root {
-  --primaryColor: 234, 233, 227;
-  --secondaryColor: 0, 22, 77;
-  --accentColor: 254, 219, 102;
+  --yellow: 255, 234, 41;
+  --blue: 40, 119, 153;
+  --lightBlue: 138, 220, 255;
+  --black: 0, 0, 0;
   --white: 252, 251, 251;
 
   --orange: 255, 196, 80;
@@ -17,15 +18,15 @@
 
 // Fonts
 @font-face {
-  font-family: RozhaOne;
-  src: url(./fonts/RozhaOne-Regular.ttf);
+  font-family: Monofett;
+  src: url(./fonts/Monofett-Regular.ttf);
 }
 
 @font-face {
-  font-family: Roboto;
-  letter-spacing: 5px;
-  src: url(./fonts/Roboto-Light.ttf);
+  font-family: Inter;
+  src: url(./fonts/Inter-VariableFont.ttf);
 }
+
 
 * {
   box-sizing: border-box;
@@ -45,14 +46,20 @@ a {
   text-decoration: none;
 }
 
+p{
+  font-family: Inter;
+  font-size: 16px;
+}
+
 .link {
-  color: rgb(var(--secondaryColor), 0.8);
+  color: rgb(var(--black), 0.8);
   font-weight: 500;
   font-size: 1rem;
   cursor: pointer;
+  font-family: Inter;
 
   &:hover{
-    color: rgb(var(--secondaryColor));
+    color: rgb(var(--black));
     text-decoration: underline;
   }
 }
@@ -62,20 +69,21 @@ main{
 }
 
 label{
-    font-family: Roboto;
-    color: rgb(var(--secondaryColor));
-    font-size: 14px;
+    font-family: Inter;
+    color: rgb(var(--black));
+    font-size: 18px;
+    margin-top: 40px;
 }
 
 input{
-  font-family: Roboto;
+  font-family: Inter;
   font-size: 14px;
   background-color:transparent;
   border: 0;
-  border-bottom: 1px solid rgb(var(--secondaryColor));
+  border-bottom: 1px solid rgb(var(--black));
   box-shadow: none;
-  margin-bottom: 15px;
-  height: 30px;
+  margin-bottom: 10px;
+  height: 40px;
   width: 250px;
 }
 

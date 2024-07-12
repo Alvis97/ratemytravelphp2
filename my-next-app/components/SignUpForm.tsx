@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import formStyle from '../styles/components/formStyle.module.scss';
 import   { SignUpFormErrors, validateSignUpForm } from '../utils/formValidation';
+import { Backpack, Beach, BrownBag, Luggage, Purse } from './userIcons';
 
 
 
@@ -133,6 +134,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ closeModal }) => {
                     id="gender"
                     value={formData.gender}
                     onChange={handleChange}
+                    className={formStyle.select}
                 >
                     <option value="">Select Gender</option>
                     <option value="Cis Woman">Cis Woman</option>
@@ -142,7 +144,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ closeModal }) => {
                     <option value="Non binary">Non binary</option>
                     <option value="Other">Other</option>
                 </select><br />
-                <p>This app is for non Cis men</p>
+                <p className={formStyle.note}>*This app is for non Cis men</p>
                 {errors.gender && <p className={formStyle.error}>{errors.gender}</p>}
             <label htmlFor="email">Email</label><br />
             <input
@@ -165,8 +167,8 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ closeModal }) => {
             /><br />
            {errors.pwd && <p className={formStyle.error}>{errors.pwd}</p>}
             <label htmlFor="avatar">Choose an Avatar</label><br />
-                <div>
-                    <label>
+                <div className={formStyle.avatarDiv}>
+                    <label className={formStyle.avatarLabel}>
                         <input
                             type="radio"
                             name="avatar"
@@ -174,9 +176,10 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ closeModal }) => {
                             checked={selectedAvatar === 'avatar1.jpg'}
                             onChange={handleAvatarChange}
                         />
-                        <img src="/images/avatar1.jpg" alt="Avatar 1" />
+                        <Beach/>
+                        {/*<img src="/images/avatar3.jpg" alt="Avatar 5" />*/}
                     </label>
-                    <label>
+                    <label className={formStyle.avatarLabel}>
                         <input
                             type="radio"
                             name="avatar"
@@ -184,9 +187,10 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ closeModal }) => {
                             checked={selectedAvatar === 'avatar2.jpg'}
                             onChange={handleAvatarChange}
                         />
-                        <img src="/images/avatar2.jpg" alt="Avatar 2" />
+                        <BrownBag/>
+                    {/*<img src="/images/avatar3.jpg" alt="Avatar 5" />*/}
                     </label>
-                    <label>
+                    <label className={formStyle.avatarLabel}>
                         <input
                             type="radio"
                             name="avatar"
@@ -194,7 +198,30 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ closeModal }) => {
                             checked={selectedAvatar === 'avatar3.jpg'}
                             onChange={handleAvatarChange}
                         />
-                        <img src="/images/avatar3.jpg" alt="Avatar 3" />
+                         <Purse/>
+                         {/*<img src="/images/avatar3.jpg" alt="Avatar 5" />*/}
+                    </label>
+                    <label className={formStyle.avatarLabel}>
+                        <input
+                            type="radio"
+                            name="avatar"
+                            value="avatar4.jpg"
+                            checked={selectedAvatar === 'avatar4.jpg'}
+                            onChange={handleAvatarChange}
+                        />
+                        <Luggage/>
+                         {/*<img src="/images/avatar3.jpg" alt="Avatar 5" />*/}
+                    </label>
+                    <label className={formStyle.avatarLabel}>
+                        <input
+                            type="radio"
+                            name="avatar"
+                            value="avatar5.jpg"
+                            checked={selectedAvatar === 'avatar5.jpg'}
+                            onChange={handleAvatarChange}
+                        />
+                        <Backpack/>
+                        {/*<img src="/images/avatar3.jpg" alt="Avatar 5" />*/}
                     </label>
                 </div><br />
 
@@ -206,8 +233,8 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ closeModal }) => {
           <div className={formStyle.socials}>
             <p className={formStyle.para}>Or Sign Up With</p><br />
             <div className={formStyle.socialIcons}>
-              <button>Icon</button>
-              <button>Icon</button>
+              <button className={formStyle.socialBtn}>Icon</button>
+              <button className={formStyle.socialBtn2}>Icon</button>
             </div>
             <p className={formStyle.para}>Already have an account?</p>
             <button onClick={()=> router.push('/login')} className={formStyle.signUp}>

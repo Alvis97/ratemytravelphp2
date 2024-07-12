@@ -1,0 +1,32 @@
+@import '../mixins';
+
+.Parent{
+   height: 200px;
+   width: 500px;
+   border-radius: var(--bigRadius);
+   background-color: white;
+   box-shadow: 14px 15px 28px -12px rgba(92,92,92,0.75);
+   -webkit-box-shadow: 14px 15px 28px -12px rgba(92,92,92,0.75);
+   -moz-box-shadow: 14px 15px 28px -12px rgba(92,92,92,0.75);
+   border: 1px solid rgb(174, 174, 174);
+   margin: 10px;
+   padding: 10px;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+
+   .top{
+    padding: 7px 5px;
+    display: flex;
+    align-items: center;
+   }
+
+   .bottom{
+    padding: 0px 10px;
+   }
+
+   .comment{
+    display: flex;
+    justify-content: right;
+   }
+}

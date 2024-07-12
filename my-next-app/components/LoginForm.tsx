@@ -67,6 +67,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ closeModal }) => {
   return (
     <form onSubmit={handleSubmit}>
       <div>
+        <h1 className={formStyle.h1}>Login</h1>
         <label htmlFor="email">Email</label><br />
         <input
           type="text"
@@ -76,8 +77,8 @@ const LoginForm: React.FC<LoginFormProps> = ({ closeModal }) => {
           onChange={handleChange}
           placeholder="example@hotmail.com"
         />
-        {errors.email && <div className="error">{errors.email}</div>}
-      </div>
+        {errors.email && <div className={formStyle.error}>{errors.email}</div>}
+      </div><br />
       <div>
         <label htmlFor="password">Password</label><br />
         <input
@@ -88,8 +89,8 @@ const LoginForm: React.FC<LoginFormProps> = ({ closeModal }) => {
           onChange={handleChange}
           placeholder="*********"
         />
-        {errors.password && <div className="error">{errors.password}</div>}
-      </div>
+        {errors.password && <div className={formStyle.error}>{errors.password}</div>}
+      </div><br />
       <button type="submit" className={formStyle.CFAButton}>
         Login
       </button>

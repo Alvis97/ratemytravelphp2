@@ -1,0 +1,22 @@
+@use "../mixins.scss" as mixins;
+
+.SeparationParent{
+   width: 100vw;
+   height: 300px;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+
+   .line{
+    width: 250px;
+    height: 150px;
+    border-bottom: 1px solid rgb(var(--black));
+   }
+
+   .line2{
+    width: 250px;
+    height: 150px;
+   }
+}
+

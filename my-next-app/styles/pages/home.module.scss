@@ -1,0 +1,118 @@
+//@use "../mixins.scss" as mixins;
+@import '../mixins';
+
+
+.section1{
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    background-image: url(../../public/images/yellowCircle.jpg);
+    background-size: contain; /* Ensure the image fits within the div without cropping */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat;
+    z-index: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.textSection{
+
+    width: fit-content;
+    margin: 40px auto -100px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    align-items:flex-end;
+
+    h1{
+        font-family: Monofett;
+        font-size: 116px;
+    }
+
+    p{
+        width: 260px;
+        font-family: Inter;
+        font-size: 20px;
+        margin-top: 40px;
+    }
+}
+
+.section2{
+    display: flex;
+    width: 90vw;
+    margin: auto;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.section3{
+    width: fit-content;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    position: relative;
+
+    .MailDiv{
+        width: 400px;
+        position: absolute;
+        top: 180px;
+        left: 80px;
+        right: auto;
+
+        h2{
+            width: 400px;
+            font-size: 30px;
+        }
+    }
+
+    .MailIcon{
+        width: fit-content;
+        height: fit-content;
+        margin: 100px 100px 0 -180px;
+        
+    }
+}
+
+.input{
+  border-bottom: 1px solid rgb(var(--black));
+  width: 300px;
+  margin-top: 20px;
+}
+
+.CFAButton{
+    @include CFAButton;
+}
+
+.CardParent{
+    background-color: rgb(var(--blue));
+    height: 380px;
+    width: 300px;
+    border-radius: (var(--bigRadius));
+    border: 3px solid rgb(var(--lightBlue));
+    @include bigShadow();
+    box-shadow: 14px 15px 28px -12px rgba(92,92,92,0.75);
+    -webkit-box-shadow: 14px 15px 28px -12px rgba(92,92,92,0.75);
+    -moz-box-shadow: 14px 15px 28px -12px rgba(92,92,92,0.75);
+    display: flex;
+    flex-direction: column;
+    justify-content:space-around;
+    align-items: center;
+    padding: 50px 0;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+
+        &:hover {
+            transform: scale(1.1); // Use transform property for scaling
+        }
+    
+
+    h3{
+        font-family: Inter;
+        color: rgb(var(--white));
+        text-align: center;
+        width: 250px;
+    }
+}
+

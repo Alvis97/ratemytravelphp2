@@ -3,15 +3,18 @@ import React, { useState } from "react";
 import { LogoSmall } from "./Icons";
 import Modal from "./Modal";
 import LoginForm from "./LoginForm";
+import SignUpForm from "./SignUpForm";
+import { useAuth } from '../context/AuthContext';
 
 //Styles
 import navigationStyle from "../styles/components/navigation.module.scss";
-import SignUpForm from "./SignUpForm";
+
 
 //modal that is opening for login and signup
 const Navigation: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalType, setModalType] = useState<"login" | "signup">("login");
+  const { isLoggedIn, logout } = useAuth();
 
   const openModal = (type: "login" | "signup") => {
     setModalType(type);
@@ -24,25 +27,31 @@ const Navigation: React.FC = () => {
     <>
       <div className={navigationStyle.parent}>
         <div className={navigationStyle.section1}>
+        <LogoSmall />
           <ul className={navigationStyle.ul}>
             <li><Link href="/" className={navigationStyle.link}>Home</Link></li>
-            <li><Link href="/about" className={navigationStyle.link}>About</Link></li>
-            <li><Link href="/features" className={navigationStyle.link}>Features</Link></li>
+            <li><Link href="/guidelines" className={navigationStyle.link}>Community Guidelines</Link></li>
           </ul>
         </div>
         
-        <div className={navigationStyle.section2}>
-          <Link href="/" className={navigationStyle.logo}>
-            <LogoSmall />
-          </Link>
-        </div>
+      
 
         <div className={navigationStyle.section3}>
-          <button onClick={() => openModal("login")} className={navigationStyle.linkBtn}>Login</button>
-          <span className={navigationStyle.span}>|</span>
-          <button onClick={() => openModal("signup")} className={navigationStyle.CFAButton}>
-            Join Community
-          </button>
+          {isLoggedIn ? (
+            <>
+              <button onClick={logout} className={navigationStyle.linkBtn}>Logout</button>
+              <span className={navigationStyle.span}>|</span>
+              <Link href="/profile" className={navigationStyle.CFAButton}>Account</Link>
+            </>
+          ) : (
+            <>
+              <button onClick={() => openModal('login')} className={navigationStyle.linkBtn}>Login</button>
+              <span className={navigationStyle.span}>|</span>
+              <button onClick={() => openModal('signup')} className={navigationStyle.CFAButton}>
+                Join Community
+              </button>
+            </>
+          )}
         </div>
       </div>
 

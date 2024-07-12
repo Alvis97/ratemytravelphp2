@@ -1,13 +1,11 @@
-@use "../mixins.module.scss" as mixins;
+@use "../mixins.scss" as mixins;
+@import '../mixins';
 
-form{
-    .CFAButton{
-        width: 150px;
-        display: block;
-        margin: auto;
-        margin-bottom: 20px;
-    }
- }
+.CFAButton{
+   @include CFAButton;
+   width: 100%;
+   margin: 10px 0 20px 0;
+}  
 
  .para{
     font-size: 16px;
@@ -19,6 +17,7 @@ form{
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
 
     .para{
         font-size: 14px;
@@ -26,14 +25,13 @@ form{
     }
 
     .signUp{
-        font-family: rozhaOne;
+        font-family: Inter;
+        font-weight: bold;
+        font-size: 20px;
+        background-color: transparent;
     }
  }
 
- .socialIcons{
-    display: flex;
-    margin-bottom: 50px;
- }
 
  .signUp{
     border: none;
@@ -52,14 +50,20 @@ form{
 
   .h1{
     display: block;
-    text-align: center;
-    margin: 20px 0 30px;
-    font-family: RozhaOne;
+    text-align: left;
+    margin: 30px 0 15px;
+    font-family: Inter;
+    font-weight: 600;
     color: rgb(var(--secondaryColor));
   }
 
   .formDiv{
    display: block;
+   padding: 20px;
+
+   input{
+      width: 100%;
+   }
   }
 
   .Success{
@@ -71,3 +75,104 @@ form{
    height: 100%;
    top: 0;
   }
+
+  .error {
+   color: rgb(var(--red));
+   font-size: 12px; // Smaller font size
+   margin-bottom: 15px;
+   font-family: inter;
+   font-weight: lighter;
+ }
+
+ .avatarDiv{
+   height: fit-content;
+   display: flex;
+   flex-wrap: wrap;
+ }
+
+ .avatarLabel{
+   display: flex;
+   flex-direction: column-reverse;
+   width: fit-content;
+   justify-content: center;
+   align-items: center;
+   margin-top: 5px;
+
+   input{
+      width: 18px;
+      height: 18px;
+      margin: 0;
+   }
+ }
+
+
+
+ .note{
+   font-size: 12px;
+   margin-bottom: 10px;
+ }
+
+ .select {
+   width: 100%;
+   height: 50px;
+   margin: 5px 0 5px 0;
+   padding: 5px 0 5px 0;
+   border: 0;
+   border-radius: 0;
+   border-bottom: 1px solid rgb(var(--black));
+   font-family: inter;
+   color: gray;
+   font-size: 16px;
+   appearance: none; /* Remove default arrow */
+   background-color: rgb(var(--white));
+   background-image: url('/path/to/your/custom-arrow.svg'); /* Add custom arrow */
+   background-repeat: no-repeat;
+   background-position: right 10px center;
+ 
+   &:focus {
+     border-color: orange; /* Change border color when focused */
+     outline: none;
+   }
+
+   option:hover{
+      background-color: rgb(var(--orange));
+   }
+   
+   option:checked {
+      /* Change background color of selected option */
+     color: white; /* Change text color of selected option */
+   }
+ }
+
+ .socialIcons{
+   width: 100%;
+   padding-bottom: 20px;
+ }
+
+ .socialBtn{
+   width: 100%;
+   background-color: blue;
+   font-family: inter;
+   font-size: 18px;
+   padding: 10px 10px;
+   margin: 5px 0;
+   border-radius: var(--bigRadius);
+   border: 1px solid rgb(var(--white));
+   color: rgb(var(--white));
+ }
+ .socialBtn2{
+   width: 100%;
+   background-color: red;
+   font-family: inter;
+   font-size: 18px;
+   padding: 10px 10px;
+   margin: 5px 0;
+   border-radius: var(--bigRadius);
+   border: 1px solid rgb(var(--white));
+   color: rgb(var(--white));
+ }
+ 
+ 
+
+ 
+

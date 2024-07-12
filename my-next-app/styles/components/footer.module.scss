@@ -1,0 +1,33 @@
+@use "../mixins.scss" as mixins;
+
+.Parent{
+    width: 100vw;
+    height: 50vh;
+    display: flex;
+    justify-content: space-between;
+}
+
+.left{
+    display: flex;
+    flex-direction: column;
+    padding-left: 100px;
+
+    h2{
+        font-family: Monofett;
+        font-size: 60px;
+        margin-bottom: 20px;
+    }
+}
+
+.link{
+    @include mixins.link();
+    font-family: Inter;
+}
+
+.icons{
+    display: flex;
+    align-items: center;
+    justify-content: baseline;
+    margin-left: -15px;
+}
+
