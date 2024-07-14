@@ -1,13 +1,28 @@
-import React, { useState } from "react";
-import componentStyle from "../styles/components/components.module.scss";
+import React, { useEffect, useState } from "react";
+import { Comment2 } from "./Icons";
+import Link from "next/link";
+import CommentComponent from "./Comment";
 
 //Styles
 import postStyle from "../styles/components/post.module.scss";
-import { Purse } from "./userIcons";
-import { Comment2 } from "./Icons";
-import Link from "next/link";
 
-function Post() {
+
+interface Comment {
+    id: string;
+    text: string;
+    user: string;
+  }
+
+  const Post = () => {
+    const [comments, setComments] = useState<Comment[]>([]);
+  
+    useEffect(() => {
+      // Fetch comments from the database (replace with your actual data fetching logic)
+      fetch('/api/comments')
+        .then(response => response.json())
+        .then(data => setComments(data))
+        .catch(error => console.error('Error fetching comments:', error));
+    }, []);
 
   return (
     <div className={postStyle.Parent}>
@@ -23,7 +38,7 @@ function Post() {
 
        </div>
        <div  className={postStyle.comment}>
-          <Link href={""}><Comment2/></Link>  
+       <CommentComponent comments={comments} /> 
         </div>
     </div>
   );

@@ -3,7 +3,7 @@ import Head from "next/head";
 import Post from "../components/Post";
 
 //Style
-import SuccessStyle from "../";
+import SuccessStyle from "../styles/pages/success.module.scss";
 
 export default function Success() {
     return(
@@ -13,7 +13,7 @@ export default function Success() {
         </Head>
         <main>
             <div className={SuccessStyle.Parent}>
-                <div className={SuccessStyle.} >
+                <div className={SuccessStyle.child} >
 
                 </div>
               <Post/>

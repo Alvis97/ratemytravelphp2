@@ -1,10 +1,11 @@
 import Head from "next/head";
 import React from "react";
 import Footer from "../components/Footer";
+import Separation from "../components/Seperation";
 
 //Style
 import guidelineStyles from "../styles/pages/guidelines.module.scss";
-import Separation from "../components/Seperation";
+
 
 export default function Guidelines() {
   
@@ -72,10 +73,12 @@ export default function Guidelines() {
           <li>Participate actively and positively in community activities and discussions.</li>
           <li>Share your experiences and insights, and support others in doing the same.</li>
         </ul>
-        
-        </div>
+
         <Separation/>
         <Footer/>
+        
+        </div>
+     
       
        
       </main>

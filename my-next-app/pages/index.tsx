@@ -3,14 +3,11 @@ import Image from "next/image";
 import React from "react";
 import { GlobeCover } from "../components/globeCover";
 import Separation from "../components/Seperation";
-
-//Style
-import homeStyle from "../styles/pages/home.module.scss";
-import Card from "../components/Card";
 import { Globe, Mail, Talk, WorldMap } from "../components/Icons";
 import Footer from "../components/Footer";
 
-
+//Style
+import homeStyle from "../styles/pages/home.module.scss";
 
 export default function Home() {
   return (
