@@ -29,29 +29,23 @@ const Navigation: React.FC = () => {
         <div className={navigationStyle.section1}>
         <LogoSmall />
           <ul className={navigationStyle.ul}>
-            <li><Link href="/" className={navigationStyle.link}>Home</Link></li>
-            <li><Link href="/guidelines" className={navigationStyle.link}>Community Guidelines</Link></li>
+            <li>
+                <Link href="/" className={navigationStyle.link}>Community</Link>
+            </li>
+            <li>
+                <Link href="/guidelines" className={navigationStyle.link}>RateMyTravel</Link>
+            </li>
           </ul>
         </div>
         
       
 
         <div className={navigationStyle.section3}>
-          {isLoggedIn ? (
             <>
               <button onClick={logout} className={navigationStyle.linkBtn}>Logout</button>
               <span className={navigationStyle.span}>|</span>
               <Link href="/profile" className={navigationStyle.CFAButton}>Account</Link>
             </>
-          ) : (
-            <>
-              <button onClick={() => openModal('login')} className={navigationStyle.linkBtn}>Login</button>
-              <span className={navigationStyle.span}>|</span>
-              <button onClick={() => openModal('signup')} className={navigationStyle.CFAButton}>
-                Join Community
-              </button>
-            </>
-          )}
         </div>
       </div>
 
@@ -74,4 +68,3 @@ const Navigation: React.FC = () => {
 };
 
 export default Navigation;
-
