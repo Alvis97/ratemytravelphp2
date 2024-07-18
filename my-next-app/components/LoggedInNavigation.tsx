@@ -5,6 +5,7 @@ import Modal from "./Modal";
 import LoginForm from "./LoginForm";
 import SignUpForm from "./SignUpForm";
 import { useAuth } from '../context/AuthContext';
+import { useRouter } from 'next/router';
 
 //Styles
 import navigationStyle from "../styles/components/navigation.module.scss";
@@ -14,7 +15,8 @@ import navigationStyle from "../styles/components/navigation.module.scss";
 const Navigation: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalType, setModalType] = useState<"login" | "signup">("login");
-  const { isLoggedIn, logout } = useAuth();
+  const { logout } = useAuth();
+  const router = useRouter();
 
   const openModal = (type: "login" | "signup") => {
     setModalType(type);
@@ -22,6 +24,11 @@ const Navigation: React.FC = () => {
   };
 
   const closeModal = () => setIsModalOpen(false);
+
+  const handleLogout = () => {
+    logout();
+    router.push('/');
+  };  
 
   return (
     <>
@@ -42,7 +49,7 @@ const Navigation: React.FC = () => {
 
         <div className={navigationStyle.section3}>
             <>
-              <button onClick={logout} className={navigationStyle.linkBtn}>Logout</button>
+              <button onClick={handleLogout} className={navigationStyle.linkBtn}>Logout</button>
               <span className={navigationStyle.span}>|</span>
               <Link href="/profile" className={navigationStyle.CFAButton}>Account</Link>
             </>

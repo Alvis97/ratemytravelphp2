@@ -70,8 +70,6 @@ export const validateSignUpForm = (formData: SignUpFormData): SignUpFormErrors =
     errors.pwd = "Password is required";
   } else if (formData.pwd.length < 6) {
     errors.pwd = "Password must be at least 6 characters long";
-  }else if (!isValidPWD(formData.pwd)) {
-    errors.pwd = "One uppercase, lowercase and number is needed";
   }
 
   return errors;
