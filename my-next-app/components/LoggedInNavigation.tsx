@@ -7,12 +7,10 @@ import SignUpForm from "./SignUpForm";
 import { useAuth } from '../context/AuthContext';
 import { useRouter } from 'next/router';
 
-//Styles
+// Styles
 import navigationStyle from "../styles/components/navigation.module.scss";
 
-
-//modal that is opening for login and signup
-const Navigation: React.FC = () => {
+const LoggedInNavigation: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalType, setModalType] = useState<"login" | "signup">("login");
   const { logout } = useAuth();
@@ -34,25 +32,23 @@ const Navigation: React.FC = () => {
     <>
       <div className={navigationStyle.parent}>
         <div className={navigationStyle.section1}>
-        <LogoSmall />
+          <LogoSmall />
           <ul className={navigationStyle.ul}>
             <li>
-                <Link href="/" className={navigationStyle.link}>Community</Link>
+              <Link href="/" className={navigationStyle.link}>Community</Link>
             </li>
             <li>
-                <Link href="/guidelines" className={navigationStyle.link}>RateMyTravel</Link>
+              <Link href="/guidelines" className={navigationStyle.link}>RateMyTravel</Link>
             </li>
           </ul>
         </div>
         
-      
-
         <div className={navigationStyle.section3}>
-            <>
-              <button onClick={handleLogout} className={navigationStyle.linkBtn}>Logout</button>
-              <span className={navigationStyle.span}>|</span>
-              <Link href="/profile" className={navigationStyle.CFAButton}>Account</Link>
-            </>
+          <>
+            <button onClick={handleLogout} className={navigationStyle.linkBtn}>Logout</button>
+            <span className={navigationStyle.span}>|</span>
+            <Link href="/profile" className={navigationStyle.CFAButton}>Account</Link>
+          </>
         </div>
       </div>
 
@@ -61,12 +57,9 @@ const Navigation: React.FC = () => {
         <Modal onClose={closeModal}>
           <button onClick={closeModal} className={navigationStyle.exitBtn}>X</button>
           {modalType === "login" ? (
-              <LoginForm closeModal={closeModal} />
-            
+            <LoginForm closeModal={closeModal} />
           ) : (
-            <>
-              <SignUpForm closeModal={closeModal} />
-            </>
+            <SignUpForm closeModal={closeModal} />
           )}
         </Modal>
       )}
@@ -74,4 +67,4 @@ const Navigation: React.FC = () => {
   );
 };
 
-export default Navigation;
+export default LoggedInNavigation;

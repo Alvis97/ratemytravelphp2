@@ -16,9 +16,6 @@ export default function Success() {
                 <div className={SuccessStyle.child} >
 
                 </div>
-              <Post/>
-              <Post/>
-
             </div>
         </main>
         </>

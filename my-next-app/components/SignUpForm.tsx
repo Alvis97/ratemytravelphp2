@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import formStyle from '../styles/components/formStyle.module.scss';
 import   { SignUpFormErrors, validateSignUpForm } from '../utils/formValidation';
-import { Backpack, Beach, BrownBag, Luggage, Purse } from './userIcons';
+//import { Backpack, Beach, BrownBag, Luggage, Purse } from './userIcons';
 
 
 
@@ -82,7 +82,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ closeModal }) => {
       if (response.ok) {
         console.log('Sign-up successful');
         closeModal();
-        router.push('/features'); // Redirect to the features page on successful sign-up
+        router.push('/'); // Redirect to the home page on successful sign-up
       } else {
         throw new Error('Sign-up failed');
       }
@@ -176,7 +176,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ closeModal }) => {
                             checked={selectedAvatar === 'avatar1.jpg'}
                             onChange={handleAvatarChange}
                         />
-                        <Beach/>
+                        
                         {/*<img src="/images/avatar3.jpg" alt="Avatar 5" />*/}
                     </label>
                     <label className={formStyle.avatarLabel}>
@@ -187,7 +187,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ closeModal }) => {
                             checked={selectedAvatar === 'avatar2.jpg'}
                             onChange={handleAvatarChange}
                         />
-                        <BrownBag/>
+                        
                     {/*<img src="/images/avatar3.jpg" alt="Avatar 5" />*/}
                     </label>
                     <label className={formStyle.avatarLabel}>
@@ -198,7 +198,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ closeModal }) => {
                             checked={selectedAvatar === 'avatar3.jpg'}
                             onChange={handleAvatarChange}
                         />
-                         <Purse/>
+                        
                          {/*<img src="/images/avatar3.jpg" alt="Avatar 5" />*/}
                     </label>
                     <label className={formStyle.avatarLabel}>
@@ -209,7 +209,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ closeModal }) => {
                             checked={selectedAvatar === 'avatar4.jpg'}
                             onChange={handleAvatarChange}
                         />
-                        <Luggage/>
+                       
                          {/*<img src="/images/avatar3.jpg" alt="Avatar 5" />*/}
                     </label>
                     <label className={formStyle.avatarLabel}>
@@ -220,7 +220,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ closeModal }) => {
                             checked={selectedAvatar === 'avatar5.jpg'}
                             onChange={handleAvatarChange}
                         />
-                        <Backpack/>
+                       
                         {/*<img src="/images/avatar3.jpg" alt="Avatar 5" />*/}
                     </label>
                 </div><br />

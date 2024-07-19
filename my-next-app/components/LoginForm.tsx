@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { validateLoginForm } from "../utils/formValidation";
 import formStyle from '../styles/components/formStyle.module.scss';
 import { useRouter } from 'next/router';
+import { useAuth } from '../context/AuthContext';
 
 // Define FormErrors interface here or in formValidation.tsx if used there as well
 interface FormErrors {
@@ -17,7 +18,7 @@ interface LoginFormProps {
 const LoginForm: React.FC<LoginFormProps> = ({ closeModal }) => {
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [errors, setErrors] = useState<FormErrors>({});
-  const [loginSuccess, setLoginSuccess] = useState(false); // State to manage login success
+  const { login } = useAuth();// State to manage login success
   const router = useRouter();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -34,6 +35,10 @@ const LoginForm: React.FC<LoginFormProps> = ({ closeModal }) => {
 
     if (Object.keys(validationErrors).length === 0) {
       try {
+
+          // Log formData before sending request
+      console.log('Form data:', formData);
+
         const response = await fetch('/api/logIn', {
           method: 'POST',
           headers: {
@@ -46,7 +51,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ closeModal }) => {
 
         if (response.ok) {
           console.log('Login successful:', data);
-          setLoginSuccess(true); 
+          login(); 
            // Close the modal
            closeModal();
           router.push('/success');
