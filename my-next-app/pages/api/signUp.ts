@@ -29,7 +29,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   if (req.method === 'POST') {
     //storing all input values from the body
-    const {  fName, lName, age, gender, email, pwd, avatar } = req.body;
+    const {  fName, lName, age, gender, pronounce, email, pwd, avatar } = req.body;
 
       // Check database connection
  // try {
@@ -39,7 +39,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   // }
 
     try {
-      console.log('Received data:', { email, fName, lName, age, gender, pwd, avatar });
+      console.log('Received data:', { email, fName, lName, age, gender, pronounce, pwd, avatar });
 
       // Hash the password
       const hashedPassword = await bcrypt.hash(pwd, 10);
@@ -52,6 +52,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           lastName: lName,
           age: age,
           gender: gender,
+          pronounce: pronounce,
           email: email,
           password: hashedPassword,
           Image: avatar, // Default value for Image

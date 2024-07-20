@@ -20,10 +20,14 @@ model User {
   lastName         String
   age              String
   gender           String
+  pronounce        String
   password         String
   Image            String
   visitedCountries VisitedCountry[] // Define the relation
   accounts         Account[]
+  posts            Post []
+  comments         Comment[]
+  reports          Report[]
 }
 
 model VisitedCountry {
@@ -66,4 +70,38 @@ model Account {
   user                  User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
+}
+
+model Post {
+  id          Int       @id @default(autoincrement())
+  userId      String    // Foreign key to User model
+  userImage   String
+  userName    String
+  userAge     Int
+  userPronouns String
+  content     String
+  date        DateTime  @default(now())
+  user        User      @relation(fields: [userId], references: [id]) // Define the relation to User
+  comments    Comment[] // One-to-many relationship with Comment model
+  reports     Report[]  // One-to-many relationship with Report model
+}
+
+model Comment {
+  id          Int       @id @default(autoincrement())
+  content     String
+  postId      Int       // Foreign key to Post model
+  userId      String    // Foreign key to User model
+  date        DateTime  @default(now())
+  post        Post      @relation(fields: [postId], references: [id])
+  user        User      @relation(fields: [userId], references: [id])
+}
+
+model Report {
+  id          Int       @id @default(autoincrement())
+  reason      String
+  postId      Int       // Foreign key to Post model
+  userId      String    // Foreign key to User model
+  date        DateTime  @default(now())
+  post        Post      @relation(fields: [postId], references: [id])
+  user        User      @relation(fields: [userId], references: [id])
 }

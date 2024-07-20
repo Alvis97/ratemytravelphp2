@@ -23,6 +23,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ closeModal }) => {
     lName: '',
     age: '',
     gender: '',
+    pronounce: '',
     email: '',
     pwd: '',
     avatar: '',
@@ -143,6 +144,22 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ closeModal }) => {
                     <option value="Queer">Queer</option>
                     <option value="Non binary">Non binary</option>
                     <option value="Other">Other</option>
+                </select><br />
+                <p className={formStyle.note}>*This app is for non Cis men</p>
+                {errors.gender && <p className={formStyle.error}>{errors.gender}</p>}
+                <label htmlFor="pronounce">Pronounce</label><br />
+                <select
+                    name="pronounce"
+                    id="pronounce"
+                    value={formData.pronounce}
+                    onChange={handleChange}
+                    className={formStyle.select}
+                >
+                    <option value="">Select Pronounce</option>
+                    <option value="She/Her">She/Her</option>
+                    <option value="He/Him">He/Him</option>
+                    <option value="They/Them">They/Them</option>
+                    <option value="Zir/Zer">Zir/Zer</option>
                 </select><br />
                 <p className={formStyle.note}>*This app is for non Cis men</p>
                 {errors.gender && <p className={formStyle.error}>{errors.gender}</p>}
