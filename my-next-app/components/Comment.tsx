@@ -76,9 +76,9 @@ const CommentComponent: React.FC<CommentComponentProps> = ({ postId }) => {
         <div className={commentStyle.dropdown}>
           {comments.length > 0 ? (
             comments.map((comment) => (
-              <div key={comment.id} className={commentStyle.comment}>
+              <div key={comment.id} className={commentStyle.commentDiv}>
                 
-                <div className={commentStyle.childTop}>
+                <div className={commentStyle.TopContainer}>
 
                   <div className={commentStyle.Left}>
                     <div>
@@ -97,6 +97,10 @@ const CommentComponent: React.FC<CommentComponentProps> = ({ postId }) => {
                 </div>
             
                 <p className={commentStyle.content}>{comment.content}</p>
+
+                <div className={commentStyle.bottom}>
+                  <button className={commentStyle.btn}>°°°</button>
+                </div>
               </div>
             ))
           ) : (

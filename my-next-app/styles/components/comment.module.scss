@@ -5,7 +5,7 @@
   overflow-y: auto;
 }
 
-.comment {
+.commentDiv {
   background-color: white;
   border-radius: var(--smallRadius);
   margin: 5px 0;
@@ -32,21 +32,28 @@
   margin-right: 5px;
 }
 
-.childTop{
+
+
+.TopContainer{
   height: 30px;
   display: flex;
   align-items:normal;
   justify-content: space-between;
+
+  .Left{
+    display: flex;
+  }
+
+  .container{
+    display: flex;
+    flex-direction: column;
+  }
+
 }
 
-.Left{
-  display: flex;
-}
 
-.container{
-  display: flex;
-  flex-direction: column;
-}
+
+
 
 .Name{
   font-family: Inter;
@@ -74,4 +81,20 @@
   @include CFAButton;
   padding: 5px 15px;
   font-size: 16;
+  cursor: pointer;
 }
+
+.bottom{
+  text-align: right;
+}
+
+.btn{
+  background-color: transparent;
+  border: 0;
+  padding: 20px 0px 0px 20px;
+  cursor: pointer;
+}
+
+
+
+

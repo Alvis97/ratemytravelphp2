@@ -23,17 +23,21 @@ const Navigation = () => {
                   <LogoSmall />
                   <ul className={navigationStyle.ul}>
                     <li>
-                      <Link href="/" className={navigationStyle.link}>Community</Link>
+                      <Link href="/success" className={navigationStyle.link}>Community</Link>
                     </li>
                     <li>
-                      <Link href="/guidelines" className={navigationStyle.link}>RateMyTravel</Link>
+                      <Link href="/rateMyTravel" className={navigationStyle.link}>RateMyTravel</Link>
                     </li>
                   </ul>
                 </div>
                 
                 <div className={navigationStyle.section3}>
                   <>
-                    <button onClick={() => signOut()} className={navigationStyle.linkBtn}>Logout</button>
+                    <button 
+                    onClick={() => signOut({ callbackUrl: '/' })} 
+                    className={navigationStyle.linkBtn}>
+                      Logout
+                    </button>
                     <span className={navigationStyle.span}>|</span>
                     <Link href="/profile" className={navigationStyle.CFAButton}>Account</Link>
                   </>

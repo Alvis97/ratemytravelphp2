@@ -7,18 +7,26 @@ import bcrypt from 'bcrypt';
 export default NextAuth({
   providers: [
     CredentialsProvider({
-        async authorize(credentials) {
-            const user = await prisma.user.findUnique({
-                where: { email: credentials?.email },
-            });
+      name: 'Credentials',
+      credentials: {
+        email: { label: "Email", type: "email", placeholder: "example@example.com" },
+        password: { label: "Password", type: "password" }
+      },
+      async authorize(credentials) {
+        if (!credentials?.email || !credentials.password) {
+          throw new Error('Email and password are required');
+        }
 
-            if (user && (await bcrypt.compare(credentials.password, user.password))) {
-                return { id: user.id, email: user.email };
-            } else {
-                throw new Error('Invalid email or password');
-            }
-        },
-        credentials: undefined
+        const user = await prisma.user.findUnique({
+          where: { email: credentials.email },
+        });
+
+        if (user && (await bcrypt.compare(credentials.password, user.password))) {
+          return { id: user.id, email: user.email };
+        } else {
+          throw new Error('Invalid email or password');
+        }
+      }
     }),
     // Add other providers here if needed
   ],
@@ -47,5 +55,6 @@ export default NextAuth({
     },
   },
 });
+
 
 

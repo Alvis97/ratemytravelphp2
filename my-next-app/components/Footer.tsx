@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import FooterStyle from "../styles/components/footer.module.scss";
 import Link from "next/link";
-import { FB, Instagram } from "./Icons";
+import { Instagram } from "./Icons";
 
 function Footer() {
 
@@ -14,7 +14,6 @@ function Footer() {
             <Link className={FooterStyle.link} href={""}>SiteMap</Link><br /><br />
             <div className={FooterStyle.icons}>
                <Link className={FooterStyle.link}href={""}> <Instagram/> </Link>
-               <Link className={FooterStyle.link} href={""}> <FB/> </Link>
             </div>
         </div>
 
