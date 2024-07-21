@@ -1,24 +1,77 @@
-// comment.module.scss
+@import '../mixins';
+
 .dropdown {
-    position: absolute;
-    top: 50px; /* Adjust based on where you want the dropdown to appear */
-    width: 300px;
-    max-height: 200px;
-    border: 1px solid #ccc;
-    background-color: #fff;
-    overflow-y: auto;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    z-index: 1000; /* Ensure it appears above other content */
-    padding: 10px;
-    border-radius: 5px;
-  }
-  
-  .comment {
-    margin-bottom: 10px;
-    padding: 5px;
-    border-bottom: 1px solid #eee;
-  }
-  
-  .comment:last-child {
-    border-bottom: none;
-  }
+  max-height: 300px; 
+  overflow-y: auto;
+}
+
+.comment {
+  background-color: white;
+  border-radius: var(--smallRadius);
+  margin: 5px 0;
+  padding: 10px;
+}
+
+.commentInput {
+  width: 100%;
+  height: 80px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: var(--smallRadius);
+  font-size: 14px;
+  font-family: Inter;
+}
+
+.commentButton {
+  margin-top: 10px;
+}
+
+.profilePic{
+  height: 30px;
+  width: 30px;
+  margin-right: 5px;
+}
+
+.childTop{
+  height: 30px;
+  display: flex;
+  align-items:normal;
+  justify-content: space-between;
+}
+
+.Left{
+  display: flex;
+}
+
+.container{
+  display: flex;
+  flex-direction: column;
+}
+
+.Name{
+  font-family: Inter;
+  font-size: 12px;
+}
+
+.pronounce{
+  font-family: Inter;
+  font-size: 10px;
+}
+
+.date{
+  font-family: Inter;
+  font-size: 10px;
+  margin: 0;
+}
+
+.content{
+  font-family: Inter;
+  font-size: 14px;
+  margin: 5px 0;
+}
+
+.CFAButton{
+  @include CFAButton;
+  padding: 5px 15px;
+  font-size: 16;
+}

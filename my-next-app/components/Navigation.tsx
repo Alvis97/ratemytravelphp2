@@ -1,27 +1,76 @@
 // components/Navigation.tsx
-import React, { ReactNode } from 'react';
-import { useAuth } from '../context/AuthContext';
-import LoggedInNavigation from './LoggedInNavigation';
-import LoggedOutNavigation from './LoggedOutNavigation';
+import { signIn, signOut, useSession } from 'next-auth/react';
+import Link from 'next/link';
+import React from 'react';
 
-interface NavigationProps {
-  children: ReactNode;
-}
+//Style
+import navigationStyle from "../styles/components/navigation.module.scss";
+import { LogoSmall } from './Icons';
 
-const Navigation: React.FC<NavigationProps> = ({ children }) => {
-  const { isLoggedIn } = useAuth();
+const Navigation = () => {
+  const { data: session, status } = useSession();
 
-  console.log('isLoggedIn:', isLoggedIn); // Verify isLoggedIn value
+  if (status === 'loading') {
+    return <div>Loading...</div>;
+  }
 
   return (
-    <>
-      {isLoggedIn ? <LoggedInNavigation /> : <LoggedOutNavigation />}
-      {children}
-    </>
+    <nav>
+      {session ? (
+        <>
+            <div className={navigationStyle.parent}>
+                <div className={navigationStyle.section1}>
+                  <LogoSmall />
+                  <ul className={navigationStyle.ul}>
+                    <li>
+                      <Link href="/" className={navigationStyle.link}>Community</Link>
+                    </li>
+                    <li>
+                      <Link href="/guidelines" className={navigationStyle.link}>RateMyTravel</Link>
+                    </li>
+                  </ul>
+                </div>
+                
+                <div className={navigationStyle.section3}>
+                  <>
+                    <button onClick={() => signOut()} className={navigationStyle.linkBtn}>Logout</button>
+                    <span className={navigationStyle.span}>|</span>
+                    <Link href="/profile" className={navigationStyle.CFAButton}>Account</Link>
+                  </>
+                </div>
+            </div>
+        </>
+      ) : (
+        <>
+          <div className={navigationStyle.parent}>
+              <div className={navigationStyle.section1}>
+                <LogoSmall />
+                <ul className={navigationStyle.ul}>
+                  <li>
+                    <Link href="/" className={navigationStyle.link}>Home</Link>
+                  </li>
+                  <li>
+                    <Link href="/guidelines" className={navigationStyle.link}>Community Guidelines</Link>
+                  </li>
+                </ul>
+              </div>
+              
+              <div className={navigationStyle.section3}>
+                <>
+                <Link href="/login" className={navigationStyle.linkBtn}>Login</Link>
+                  <span className={navigationStyle.span}>|</span>
+                  <Link href="/signup" className={navigationStyle.CFAButton}>Join Community</Link>
+                </>
+              </div>
+          </div>
+        </>
+      )}
+    </nav>
   );
 };
 
 export default Navigation;
+
 
 
 

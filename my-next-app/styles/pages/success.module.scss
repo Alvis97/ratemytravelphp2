@@ -1,0 +1,89 @@
+@import '../mixins';
+
+.Parent{
+   height: 85vh;
+   width: 100vw;
+   margin-top: 40px;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding: 20px;
+
+   .child1{
+    width: 600px;
+    height: 100%;
+   }
+
+   .child2{
+    width: 600px;
+    height: 80%;
+    padding: 20px;
+    border-left: 1px solid rgb(var(--black));
+    position: fixed;
+    right: 0;
+    top: 80px;
+
+
+    .p1{
+        font-family: Inter;
+        font-size: 16px;
+    }
+
+    .p2{
+        font-family: Inter;
+        font-size: 12px;
+    }
+
+    .p3{
+        font-family: Inter;
+        font-size: 1px;
+        color: rgba(255, 255, 255, 0);
+    }
+
+    .h2{
+        font-family: Inter;
+        font-weight: bold;
+    }
+
+    .CFAButton{
+        @include CFAButton;
+    }
+
+    .form{
+        display: flex;
+        flex-direction: column;
+        height: 200px;
+        width: 500px;
+        padding: 10px;
+        border-radius: var(--bigRadius);
+        margin-bottom: 10px;
+        background-color: white;
+        @include bigShadow;
+    }
+
+    .textarea{
+        border: 0px;
+        height: 150px;
+        background-color: white;
+        font-size: 16px;
+        font-family: Inter;
+   
+    }
+
+    .profileIMG{
+        height: 50px;
+        width: 60px;
+        padding-right: 10px;
+        border-radius: 100%;
+    }
+
+
+    .fetchArea{
+        display: flex;
+        align-items: center;
+    }
+
+
+
+   }
+}

@@ -1,14 +1,11 @@
 @import '../mixins';
 
-.Parent{
+.Post{
    height: 200px;
-   width: 500px;
+   width: 550px;
    border-radius: var(--bigRadius);
    background-color: white;
-   box-shadow: 14px 15px 28px -12px rgba(92,92,92,0.75);
-   -webkit-box-shadow: 14px 15px 28px -12px rgba(92,92,92,0.75);
-   -moz-box-shadow: 14px 15px 28px -12px rgba(92,92,92,0.75);
-   border: 1px solid rgb(174, 174, 174);
+   @include bigShadow;
    margin: 10px;
    padding: 10px;
    display: flex;
@@ -16,10 +13,28 @@
    justify-content: space-between;
 
    .top{
-    padding: 7px 5px;
-    display: flex;
-    align-items: center;
+     display: flex;
+     justify-content: space-between;
+     
+     .profileIMG{
+      height: 50px;
+      width: 50px;
+      border-radius: 100%;
+      margin-right: 10px;
+     }
+
    }
+
+   .topLeft{
+      display: flex;
+   }
+
+   .topColumn{
+      display: flex;
+      flex-direction: column;
+   }
+
+
 
    .bottom{
     padding: 0px 10px;
@@ -30,3 +45,40 @@
     justify-content: right;
    }
 }
+
+.p1{
+   font-family: Inter;
+   font-size: 16px;
+}
+
+.p2{
+   font-family: Inter;
+   font-size: 12px;
+}
+
+.p3{
+   font-family: Inter;
+   font-size: 1px;
+   color: rgba(255, 255, 255, 0);
+}
+
+.bottomDiv{
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+
+.divForAllTheComments {
+   margin-top: 10px;
+   background: #f2f2f2;
+   border-radius: 8px;
+   padding: 10px;
+   margin-left: 10px;
+   width: 550px;
+   @include bigShadow;
+ }
+
+ .toggleButton{
+   background-color: transparent;
+   border: 0;
+ }

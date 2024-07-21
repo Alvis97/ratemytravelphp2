@@ -9,6 +9,7 @@ import Footer from "../components/Footer";
 //Style
 import homeStyle from "../styles/pages/home.module.scss";
 
+
 export default function Home() {
   return (
     <>

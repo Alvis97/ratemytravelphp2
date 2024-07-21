@@ -1,57 +1,72 @@
-import React, { useEffect, useState } from "react";
-import { Comment2 } from "./Icons";
-import Link from "next/link";
+import React, { useState } from "react";
 import CommentComponent from "./Comment";
-
-//Styles
 import postStyle from "../styles/components/post.module.scss";
+import { Comment2 } from "./Icons";
 
-
-interface Comment {
+interface PostProps {
+  post: {
     id: string;
-    text: string;
-    user: string;
-  }
+    userId: string;
+    userImage: string;
+    userName: string;
+    userAge: string;
+    userPronouns: string;
+    content: string;
+    date: string;
+  };
+}
 
-  const Post = () => {
-    const [comments, setComments] = useState<Comment[]>([]);
-  
-    useEffect(() => {
-      // Fetch comments from the database (replace with your actual data fetching logic)
-      fetch('/api/comments')
-        .then(response => response.json())
-        .then(data => setComments(data))
-        .catch(error => console.error('Error fetching comments:', error));
-    }, []);
+const Post: React.FC<PostProps> = ({ post }) => {
+  const formattedDate = new Date(post.date).toLocaleDateString();
+  const [isCommentsVisible, setIsCommentsVisible] = useState(false);
+
+  const toggleComments = () => {
+    setIsCommentsVisible(!isCommentsVisible);
+  };
 
   return (
     <div className={postStyle.Parent}>
-       <div  className={postStyle.top}>
-        <p>Icon:avatar</p>
-        <div>
-            <p>Firstname, Age</p>
-            <p>Gender</p>
+      <div className={postStyle.Post}>
+        <div className={postStyle.top}>
+          <div className={postStyle.topLeft}>
+            <img
+              className={postStyle.profileIMG}
+              src={post.userImage ? `/images/${post.userImage}` : 'images/default-avatar.jpg'}
+              alt="Profile picture"
+            />
+            <div className={postStyle.topColumn}>
+              <p className={postStyle.p1}>{post.userName}, {post.userAge}</p>
+              <p className={postStyle.p2}>{post.userPronouns}</p>
+            </div>
+          </div>
+          <div>
+            <p>{formattedDate}</p>
+          </div>
         </div>
-       </div>
-       <div  className={postStyle.bottom}>
-        <p>This is where all the text will be printed</p>
+        <p>{post.content}</p>
+        <div className={postStyle.bottomDiv}>
+          <p>Report!</p>
+          <button onClick={toggleComments} className={postStyle.toggleButton}>
+            <Comment2 />
+          </button>
+        </div>
+      </div>
 
-       </div>
-       <div  className={postStyle.comment}>
-       <CommentComponent comments={comments} /> 
+      {isCommentsVisible && (
+        <div className={postStyle.divForAllTheComments}>
+          <CommentComponent postId={post.id} />
         </div>
+      )}
     </div>
   );
-}
+};
 
 export default Post;
 
-{/**{posts.map(post => (
-    <Post
-      key={post.id}
-      firstName={post.firstName}
-      age={post.age}
-      gender={post.gender}
-      text={post.text}
-    />
-  ))} */}
+
+
+
+
+
+
+
