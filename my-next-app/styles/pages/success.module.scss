@@ -5,51 +5,74 @@
    width: 100vw;
    margin-top: 40px;
    display: flex;
-   justify-content: space-between;
+   justify-content: center;
    align-items: center;
    padding: 20px;
+}   
 
    .child1{
     width: 600px;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
    }
 
-   .child2{
-    width: 600px;
-    height: 80%;
-    padding: 20px;
-    border-left: 1px solid rgb(var(--black));
+   .modal {
     position: fixed;
-    right: 0;
-    top: 80px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Overlay effect */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modalContent {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 500px;
+    max-width: 90%;
+    position: relative;
+  }
+  
+  .closeButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+  }
 
-
-    .p1{
+    .p1 {
         font-family: Inter;
         font-size: 16px;
     }
 
-    .p2{
+    .p2 {
         font-family: Inter;
         font-size: 12px;
     }
 
-    .p3{
+    .p3 {
         font-family: Inter;
         font-size: 1px;
-        color: rgba(255, 255, 255, 0);
+        color: rgb(var(--black));
     }
 
-    .h2{
-        font-family: Inter;
-        font-weight: bold;
-    }
+  
 
-    .CFAButton{
+    .CFAButton {
         @include CFAButton;
     }
 
-    .form{
+    .form {
         display: flex;
         flex-direction: column;
         height: 200px;
@@ -57,20 +80,25 @@
         padding: 10px;
         border-radius: var(--bigRadius);
         margin-bottom: 10px;
-        background-color: white;
+        background-color: rgb(var(--white));
         @include bigShadow;
     }
 
-    .textarea{
+    .textarea {
         border: 0px;
-        height: 150px;
-        background-color: white;
+        height: 100px;
+        width: 100%;
+        background-color: rgb(var(--white));
         font-size: 16px;
         font-family: Inter;
-   
     }
 
-    .profileIMG{
+    .textarea:focus{
+        outline: none;
+      
+    }
+
+    .profileIMG {
         height: 50px;
         width: 60px;
         padding-right: 10px;
@@ -78,12 +106,59 @@
     }
 
 
-    .fetchArea{
+    .fetchArea {
         display: flex;
         align-items: center;
     }
 
+    .writePostDiv{
+        position: fixed;
+        right: 40px;
+        bottom: 30px;
+    }
+
+    .writePost {
+        font-family: Inter;
+        font-weight: 500;
+        color: rgb(var(--white));
+        border: solid 2.5px rgb(var(--black));
+        outline: 0;
+        padding: 30px 25px;
+        font-size: 1rem;
+        letter-spacing: 0;
+        background-color: rgb(var(--blue));
+        border-radius: var(--bigRadius);
+        position: relative;
+        cursor: pointer; 
+        
+        &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 90%;
+            height: 90%;
+            background-color: rgb(var(--blue), 0.8);
+            z-index: -1;
+            border-radius: var(--bigRadius);
+            border: solid 2px rgb(var(--blue));
+            box-shadow:  3px 3px 5px rgb(var(--grey),0.5);
+            transition: all 0.5s ease-in-out;
+        }
+        &:hover::after {
+            width: 100%;
+            height: 100%;
+            top: 7px;
+            left: 7px;
+          }
+    }
 
 
-   }
-}
+
+  
+
+
+
+   
+
+

@@ -4,9 +4,7 @@ import Post from "../components/Post";
 
 // Style
 import SuccessStyle from "../styles/pages/success.module.scss";
-
-
-
+import { Pen } from "../components/Icons";
 
 //Creating a array for the user to store all information???
 interface User {
@@ -38,6 +36,7 @@ const Success = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [content, setContent] = useState<string>("");
+  const [showModal, setShowModal] = useState(false);
 
   //Starting the progress of getting the details
   useEffect(() => {
@@ -110,6 +109,7 @@ const Success = () => {
 
       // Reset from content
       setContent("");
+      setShowModal(false);
     } catch (err) {
       console.error('Error creating post:', err);
     }
@@ -139,38 +139,57 @@ const Success = () => {
 
 
             </div>
-          <div className={SuccessStyle.child2}>
-            {user ? (
-              <>
-                <h2 className={SuccessStyle.h2}>Write a Post</h2>
-               
-                <form onSubmit={handleSubmit}>
-                 <div className={SuccessStyle.form}>
-                  <div className={SuccessStyle.fetchArea}>
-                  <img className={SuccessStyle.profileIMG} src={`/images/${user.Image}`}  alt="Profile picture"/>
-                  <div>
-                    <p className={SuccessStyle.p1}>{user.firstName}, {user.age}</p>
-                    <p className={SuccessStyle.p2}>{user.pronounce}</p>
-                    <p className={SuccessStyle.p3}>{user.id}</p>
-                  </div>
-                  </div>
-                  <textarea 
-                  className={SuccessStyle.textarea} 
-                  value={content}
-                  onChange={(e) => setContent(e.target.value)}
-                  placeholder="Start writing a post"
-                  ></textarea>
-                 </div>
-                <button className={SuccessStyle.CFAButton}>Post</button>
-                </form>
-                
-              
-              </>
-            ) : (
-              <div>No user data available</div>
-            )}
-          </div>
-       
+            <div className={SuccessStyle.writePostDiv}>
+            <button className={SuccessStyle.writePost} onClick={() => setShowModal(true)}>
+                <Pen/>
+                Click here to write a Post
+            </button>
+            </div>
+            {showModal && (
+            <div className={SuccessStyle.modal}>
+              <div className={SuccessStyle.modalContent}>
+                <button
+                  className={SuccessStyle.closeButton}
+                  onClick={() => setShowModal(false)}
+                >
+                  &times;
+                </button>
+                {user ? (
+                  <>
+                  
+                   
+                    <form onSubmit={handleSubmit}>
+                      <div className={SuccessStyle.fetchArea}>
+                        <img
+                          className={SuccessStyle.profileIMG}
+                          src={`/images/${user.Image}`}
+                          alt="Profile picture"
+                        />
+                        <div>
+                          <p className={SuccessStyle.p1}>
+                            {user.firstName}, {user.age}
+                          </p>
+                          <p className={SuccessStyle.p2}>{user.pronounce}</p>
+                          <p className={SuccessStyle.p3}>{user.id}</p>
+                        </div>
+                      </div>
+                      <textarea
+                        className={SuccessStyle.textarea}
+                        value={content}
+                        onChange={(e) => setContent(e.target.value)}
+                        placeholder="Start writing a post..."
+                      ></textarea> <br />
+                      <button className={SuccessStyle.CFAButton}>Post</button>
+                    </form>
+                  
+                  </>
+                ) : (
+                  <div>No user data available</div>
+                )}
+              </div>
+             
+            </div>
+          )}
         </div>
       </main>
     </>

@@ -7,6 +7,7 @@ interface SignUpFormData {
   lName: string;
   age: string;
   gender: string;
+  pronounce: string;
   email: string;
   pwd: string;
   //avatar: string;
@@ -17,10 +18,40 @@ export interface SignUpFormErrors extends FormErrors {
   lName?: string;
   age?: string;
   gender?: string;
+  pronounce?: string;
   //avatar?: string;
   email?: string;
   pwd?: string;
 }
+
+export interface RateMyTravelFormData {
+  userId: string;
+  countryId: string;
+  rating: string;
+}
+
+export interface RateMyTravelFormErrors {
+  userId?: string;
+  countryId?: string;
+  rating?: string;
+}
+
+
+export const validateRateMyTravelForm = (data: RateMyTravelFormData): RateMyTravelFormErrors => {
+  const errors: RateMyTravelFormErrors = {};
+
+  if (!data.userId) {
+    errors.userId = "User ID is required.";
+  }
+  if (!data.countryId) {
+    errors.countryId = "Country ID is required.";
+  }
+  if (!data.rating) {
+    errors.rating = "Rating is required.";
+  }
+
+  return errors;
+};
 
 
 // Function to validate sign-up form data
@@ -51,6 +82,16 @@ export const validateSignUpForm = (formData: SignUpFormData): SignUpFormErrors =
   // Gender validation
   if (!formData.gender.trim()) {
     errors.gender = "Gender is required";
+  }
+
+    // Last Name validation
+    if (!formData.pronounce.trim()) {
+      errors.pronounce = "Preferred pronounce is required";
+    } 
+
+  // Check for specific condition: Gender is male and pronoun is "He/Him"
+  if (formData.gender.trim().toLowerCase() === "male" && formData.pronounce.trim().toLowerCase() === "he/him") {
+    errors.genderPronounce = "No male identifying as male are allowed";
   }
 
   // Avatar validation
@@ -122,3 +163,5 @@ const isPositiveInteger = (value: string): boolean => {
   const int = parseInt(value, 10);
   return !isNaN(int) && int > 0;
 };
+
+

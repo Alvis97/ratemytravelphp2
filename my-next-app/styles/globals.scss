@@ -87,10 +87,22 @@ input{
   border: 0;
   border-bottom: 1px solid rgb(var(--black));
   box-shadow: none;
+  color: rgb(var(--black));
   margin-bottom: 10px;
-  height: 40px;
+  height: 30px;
   width: 250px;
 }
+
+input::placeholder {
+  color: rgb(var(--black)); /* or you can use a specific color value, e.g., color: black; */
+}
+
+input:focus {
+  outline: none; /* Remove the default outline */
+  border-bottom: 1px solid rgb(var(--black)); /* Ensure the border color remains the same */
+}
+
+
 
 
 

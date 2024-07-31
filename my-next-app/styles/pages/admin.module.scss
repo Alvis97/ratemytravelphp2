@@ -1,0 +1,21 @@
+@import '../mixins';
+
+.parent {
+    width: 100vw;
+    margin-top: 50px; 
+}
+
+.textSection {
+    margin-top: 20px;
+    text-align: center;
+
+    .h1{
+        font-family: Monofett;
+        font-size: 60px;
+    }
+
+    .p{
+        font-family: Inter;
+        font-size: 20px;
+    }
+}

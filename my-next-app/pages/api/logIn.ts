@@ -1,21 +1,14 @@
-// pages/api/login.ts
-
 import { NextApiRequest, NextApiResponse } from 'next';
 import { PrismaClient } from '@prisma/client';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 
-
-// helps prisma and env
 dotenv.config();
 
-//will be interacting with database
 const prisma = new PrismaClient();
-//secret key
 const secret = process.env.JWT_SECRET || 'default_secret_key';
 
-// Function to check the database connection
 async function checkDatabaseConnection() {
   try {
     await prisma.$connect();
@@ -26,8 +19,6 @@ async function checkDatabaseConnection() {
   }
 }
 
-
-//Handles http request  
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'POST') {
     const { email, password } = req.body;
@@ -35,7 +26,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     console.log("Received request with email", email);
 
     try {
-      // Find user by email
       const user = await prisma.user.findUnique({
         where: { email },
       });
@@ -43,11 +33,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       console.log('User found:', user);
 
       if (!user) {
-        console.log('invalid email or password');
+        console.log('Invalid email or password');
         return res.status(401).json({ error: 'Invalid email or password' });
       }
 
-      // Compare password
       const isPasswordValid = await bcrypt.compare(password, user.password);
       console.log('Password valid:', isPasswordValid);
 
@@ -56,14 +45,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(401).json({ error: 'Invalid email or password' });
       }
 
-      // Create JWT token
       const token = jwt.sign({ userId: user.id }, secret, {
-        expiresIn: '1h', // Token expires in 1 hour
+        expiresIn: '1h',
       });
 
-      console.log('JWT token created:', token)
+      console.log('JWT token created:', token);
 
-      res.status(200).json({ token });
+      const isAdmin = email === 'admin-rmt@admin.com';
+
+      if (isAdmin) {
+        res.status(200).json({ token, user: { ...user, role: 'admin' } });
+      } else {
+        res.status(200).json({ token, user: { ...user, role: 'user' } });
+      }
     } catch (error) {
       console.error('Error logging in:', error);
       res.status(500).json({ error: 'Internal server error' });
@@ -73,4 +67,5 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     res.status(405).end(`Method ${req.method} Not Allowed`);
   }
 }
+
 

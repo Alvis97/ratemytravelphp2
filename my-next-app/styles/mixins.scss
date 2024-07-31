@@ -4,9 +4,6 @@
   min-height: 100vh;
   max-width: 100vw;
   overflow-x: hidden;
-  //background-color: rgb(var(--primaryColor));
-  // background-image: url(../public/images/background/back2.png);
-  //background-image: url(../public/images/background.jpg);
   background-color: (rgb(var(--white)));
   background-repeat: no-repeat;
   background-size: cover;
@@ -127,6 +124,81 @@
         left: 5px;
       }
   } 
+
+  @mixin fbButton{
+
+    font-family: Inter;
+    font-weight: 500;
+    color: rgb(var(--black));
+    border: solid 2.5px rgb(var(--black));
+    outline: 0;
+    padding: 7px 10px;
+    font-size: 1rem;
+    letter-spacing: 0;
+    background-color: rgb(8, 102, 255);
+    border-radius: var(--bigRadius);
+    position: relative;
+    cursor: pointer; 
+    
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 90%;
+        height: 90%;
+        background-color:rgb(8, 102, 255);
+        z-index: -1;
+        border-radius: var(--bigRadius);
+        border: solid 2px rgb(var(--white));
+        box-shadow:  3px 3px 5px rgb(var(--white),0.5);
+        transition: all 0.5s ease-in-out;
+    }
+    &:hover::after {
+        width: 100%;
+        height: 100%;
+        top: 5px;
+        left: 5px;
+      }
+  } 
+
+
+  @mixin googleButton{
+
+    font-family: Inter;
+    font-weight: 500;
+    color: rgb(var(--black));
+    border: solid 2.5px rgb(var(--black));
+    outline: 0;
+    padding: 7px 10px;
+    font-size: 1rem;
+    letter-spacing: 0;
+    background-color: rgb(var(--white));
+    border-radius: var(--bigRadius);
+    position: relative;
+    cursor: pointer; 
+    
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 90%;
+        height: 90%;
+        background-color:rgb(var(--white));
+        z-index: -1;
+        border-radius: var(--bigRadius);
+        border: solid 2px rgb(var(--white));
+        box-shadow:  3px 3px 5px rgb(var(--white),0.5);
+        transition: all 0.5s ease-in-out;
+    }
+    &:hover::after {
+        width: 100%;
+        height: 100%;
+        top: 5px;
+        left: 5px;
+      }
+  }
   
   @mixin exitBtn{
     padding: 4px 11px;

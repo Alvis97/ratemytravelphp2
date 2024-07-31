@@ -1,8 +1,9 @@
-// pages/api/auth/[...nextauth].ts
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
-import prisma from '../../../lib/prisma';
 import bcrypt from 'bcrypt';
+import { PrismaClient } from '@prisma/client';
+
+const prisma = new PrismaClient();
 
 export default NextAuth({
   providers: [
@@ -22,16 +23,17 @@ export default NextAuth({
         });
 
         if (user && (await bcrypt.compare(credentials.password, user.password))) {
-          return { id: user.id, email: user.email };
+          // Hardcoding roles for simplicity
+          const role = user.email === 'admin-rmt@admin.com' ? 'admin' : 'user';
+          return { id: user.id, email: user.email, role };
         } else {
           throw new Error('Invalid email or password');
         }
       }
     }),
-    // Add other providers here if needed
   ],
   pages: {
-    signIn: '/auth/logIn', // Custom sign-in page
+    signIn: '/auth/signin', // Custom sign-in page
   },
   session: {
     strategy: 'jwt',
@@ -41,6 +43,7 @@ export default NextAuth({
       if (user) {
         token.id = user.id;
         token.email = user.email;
+        token.role = user.role; // Add role to token
       }
       return token;
     },
@@ -49,7 +52,8 @@ export default NextAuth({
         session.user = {
           id: token.id as string,
           email: token.email as string,
-        };
+          role: token.role as string, // Add role to session user
+        } as any; // Use 'as any' to bypass type checking (consider refining types further)
       }
       return session;
     },
