@@ -23,7 +23,7 @@ model User {
   pronounce        String
   password         String
   Image            String
-  role             String? 
+  role             String  @default("user")
   visitedCountries VisitedCountry[] // Define the relation
   accounts         Account[]
   posts            Post []

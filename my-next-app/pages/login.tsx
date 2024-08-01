@@ -3,48 +3,47 @@ import Head from 'next/head';
 import React, { useState } from 'react';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/router';
+import { LoginImage, Stars } from '../components/LoginImage';
+import { Fb, Google } from '../components/Icons';
+import error from 'next/error';
 
 //Styles
 import formStyle from '../styles/pages/forms.module.scss'; 
-import { LoginImage, Stars } from '../components/LoginImage';
-import { Fb, Google } from '../components/Icons';
 
+//Using signIn from nextAuth
 const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
+  // Start function when submit button is clicked
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    try {
-      // Call NextAuth's signIn method
-      const result = await signIn('credentials', {
-        redirect: false, // Prevent automatic redirect
-        email,
-        password,
-      });
+    const result = await signIn('credentials', {
+      redirect: false,
+      email,
+      password,
+    });
 
       if (result?.error) {
         setError(result.error);
       } else {
         // Redirect on successful login
-        
+        console.log('')
         const session = await fetch('api/auth/session').then(res => res.json());
-
+        console.log(session);
+        
         if (session.user.role === 'admin') {
-          router.push('/admin'); //if admin go to admin page
+          router.push('/admin'); // go to admin page
+          console.log('logged in as admin');
         } else {
-          router.push('/success'); //if user go to community page
+          router.push('/success'); //community page
+          console.log('logged in as user');
         }
-
-
       }
-    } catch (error) {
-      console.error('Error during sign in:', error);
-      setError('An unexpected error occurred.');
-    }
+    
   };
 
   return (
@@ -94,7 +93,8 @@ const SignIn = () => {
       </main>
     </>
   );
-};
+  } 
+
 
 export default SignIn;
 function login() {

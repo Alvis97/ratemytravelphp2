@@ -1,3 +1,4 @@
+@use "../mixins.scss" as mixins;
 @import '../mixins';
 
 .parent {
@@ -18,6 +19,32 @@
         font-family: Inter;
         font-size: 20px;
         margin-bottom: 0;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .parent {
+        .textSection {
+        
+            .h1{
+                font-size: 40px;
+            }
+        
+            .p{
+                font-size: 16px;
+            }
+        }
+    }
+
+    .reportsSection {
+
+        .th {
+            font-size: 14px;
+        }
+    
+        .td {
+            font-size: 14px;
+        }
     }
 }
 
@@ -59,23 +86,111 @@
 }
 
 .child3 {
-    width: 500px;
+    width: 100vw;
     margin: auto;
-    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 50px 0 50px;
 
     .searchDiv {
-        width: 340px;
+        width: 280px;
+        height: 70px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
         margin: auto;
-        margin-bottom: 20px;
+        margin-bottom: 40px;
+    }
+
+    .p2 {
+        font-size: 14px;
+        text-align: center;
+        max-width: 500px;
     }
 
     .CFAButton {
         @include CFAButton;
-        margin-left: 10px;
+      
     }
 }
 
 .DeleteBtn{
     @include DeleteButton;
     margin-top: 10px;
+}
+
+.input {
+    width: 180px;
+    margin: auto 10px;
+}
+
+.fetchedDiv {
+    width: fit-content;
+    margin: 10px;
+    background-color: white;
+    border: 2px solid rgb(var(--black));
+    padding: 20px;
+    border-radius: var(--smallRadius);
+    @include bigShadow;
+}
+
+@media screen and (max-width: 525px) {
+    .parent {
+        .textSection {
+            margin-top: 20px;
+            text-align: center;
+            padding: 0 30px;
+
+            .h1{
+                font-size: 40px;
+            }
+        
+            .p{
+                font-size: 16px;
+            }
+        }
+    }
+
+    .reportsSection {
+
+        .th {
+            font-size: 12px;
+            padding: 5px;
+        }
+    
+        .td {
+            font-size: 12px;
+            padding: 5px;
+        }
+    }
+
+    .child3 {
+        width: 100vw;
+        margin: auto;
+        padding: 50px 50px 0 50px;
+    
+        .searchDiv {
+            width: 200px;
+            margin: auto;
+            margin-bottom: 20px;
+        }
+    
+        .CFAButton {
+            @include CFAButton;
+            padding: 5px;
+
+          
+        }
+    }
+
+    .textSection2 {
+        margin-top: 50px;
+        text-align: center;
+    
+        .p{
+            font-size: 14px;
+        }
+    }
 }

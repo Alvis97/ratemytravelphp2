@@ -7,8 +7,9 @@ import { Fb, Google } from '../components/Icons';
 import { validateSignUpForm, SignUpFormErrors } from '../utils/formValidation';
 
 import formStyle from '../styles/pages/forms.module.scss';
+import email from 'next-auth/providers/email';
 
-
+//use signup from router
 const SignUp = () => {
   const router = useRouter();
   
@@ -22,6 +23,7 @@ const SignUp = () => {
     email: '',
     pwd: '',
     avatar: '',
+
   });
 
   const [errors, setErrors] = useState<SignUpFormErrors>({});
@@ -71,6 +73,7 @@ const SignUp = () => {
 
       if (response.ok) {
         console.log('Sign-up successful');
+        
         // After successful sign-up, you can call `signIn` to automatically log the user in
         //const result = await signIn('credentials', {
           //redirect: false,

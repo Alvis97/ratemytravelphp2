@@ -1,38 +1,50 @@
+// pages/admin.tsx
+
+import { GetServerSideProps } from 'next';
+import { getSession, useSession } from 'next-auth/react';
 import { useEffect, useState } from 'react';
-import Head from 'next/head';
-import AdminStyle from '../styles/pages/admin.module.scss';
+import AdminStyle from '../styles/pages/admin.module.scss'; // Adjust the path as necessary
+import Head from 'next/head'; // Correct import for the Head component
 
 interface Report {
   id: string;
   reason: string;
   postId: string;
-  commentId?: string; // Optional for comments
+  commentId?: string;
   userId: string;
   date: string;
-  type: 'post' | 'comment'; // Type of report
+  type: 'post' | 'comment';
 }
 
 interface Post {
   id: string;
   title: string;
   content: string;
-  // Add other fields from your `post` table as needed
 }
 
 interface Comment {
   id: string;
   content: string;
-  // Add other fields from your `comment` table as needed
 }
 
-export default function Admin() {
+const Admin: React.FC = () => {
+  const { data: session, status } = useSession();
   const [reports, setReports] = useState<Report[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [searchId, setSearchId] = useState<string>('');
-  const [searchType, setSearchType] = useState<'post' | 'comment'>('post'); // Type of item being searched
+  const [reportSearchId, setReportSearchId] = useState<string>('');
+  const [searchType, setSearchType] = useState<'post' | 'comment'>('post');
   const [post, setPost] = useState<Post | null>(null);
-  const [comment, setComment] = useState<Comment | null>(null); // State for comments
+  const [comment, setComment] = useState<Comment | null>(null);
   const [postError, setPostError] = useState<string | null>(null);
+
+  if (status === 'loading') {
+    return <p>Loading...</p>;
+  }
+
+  if (!session || session.user.role !== 'admin') {
+    return <p>Access denied. Admins only.</p>;
+  }
 
   useEffect(() => {
     const fetchReports = async () => {
@@ -102,6 +114,35 @@ export default function Admin() {
     }
   };
 
+  const deleteReport = async () => {
+    if (!reportSearchId) return;
+
+    try {
+      const reportEndpoint = `/api/report/${reportSearchId}`;
+      const response = await fetch(reportEndpoint, {
+        method: 'DELETE',
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to delete report');
+      }
+
+      setReportSearchId('');
+      setError(null);
+      alert('Report deleted successfully');
+      // Optionally refetch reports
+      const updatedReports = reports.filter((report) => report.id !== reportSearchId);
+      setReports(updatedReports);
+    } catch (err) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError('An unknown error occurred');
+      }
+      console.log('Error deleting report:', err);
+    }
+  };
+
   const renderItemTable = (item: Post | Comment) => {
     return (
       <table className={AdminStyle.table}>
@@ -128,63 +169,128 @@ export default function Admin() {
             <h1 className={AdminStyle.h1}>Welcome back Admin!</h1>
             <p className={AdminStyle.p}>Let's keep our community friendly</p>
           </div>
-          
+
+           {/** Print report table */}
           <div className={AdminStyle.reportsSection}>
             {error && <p className={AdminStyle.error}>{error}</p>}
             <table className={AdminStyle.reportTable}>
               <thead>
                 <tr>
-                  <th className={AdminStyle.th}>New reports with PostId:</th>
-                  <th className={AdminStyle.th}>Reason:</th>
-                  <th className={AdminStyle.th}>CommentId:</th> {/* Optional column */}
+                  <th className={AdminStyle.th}>Report ID</th>
+                  <th className={AdminStyle.th}>Post ID</th>
+                  <th className={AdminStyle.th}>Reason</th>
+                  <th className={AdminStyle.th}>Comment ID</th>
                 </tr>
               </thead>
               <tbody>
-                {reports.map((report) => (
-                  <tr key={report.id}>
-                    <td className={AdminStyle.td}>{report.postId}</td>
-                    <td className={AdminStyle.td}>{report.reason}</td>
-                    <td className={AdminStyle.td}>{report.commentId || 'N/A'}</td> {/* Optional field */}
+                {reports.length === 0 ? (
+                  <tr>
+                    <td colSpan={4}>No reports</td>
                   </tr>
-                ))}
+                ) : (
+                  reports.map((report) => (
+                    <tr key={report.id}>
+                      <td className={AdminStyle.td}>{report.id}</td>
+                      <td className={AdminStyle.td}>{report.postId}</td>
+                      <td className={AdminStyle.td}>{report.reason}</td>
+                      <td className={AdminStyle.td}>{report.commentId || 'N/A'}</td>
+                    </tr>
+                  ))
+                )}
               </tbody>
             </table>
           </div>
 
+          {/** Search for post or comment with id */}
           <div className={AdminStyle.textSection2}>
-            <p className={AdminStyle.p2}>Search for the PostId or CommentId: </p>
-            <select value={searchType} onChange={(e) => setSearchType(e.target.value as 'post' | 'comment')}>
-              <option value="post">Post</option>
-              <option value="comment">Comment</option>
-            </select>
+            <p className={AdminStyle.p2}>Search for the Post/Comment ID:</p>
           </div>
 
           <div className={AdminStyle.child3}>
             <div className={AdminStyle.searchDiv}>
+                <div>  
+                <select
+                className={AdminStyle.dropdown}
+                value={searchType}
+                onChange={(e) => setSearchType(e.target.value as 'post' | 'comment')}
+              >
+                <option value="post">Post</option>
+                <option value="comment">Comment</option>
+              </select>
+              </div>
+          
+              <div>
               <input
+                className={AdminStyle.input}
                 type="text"
                 value={searchId}
                 onChange={(e) => setSearchId(e.target.value)}
-                placeholder="Enter ID"
+                placeholder="Enter post or comment ID"
               />
-              <button onClick={handleSearch} className={AdminStyle.CFAButton}>Search</button>
+              <button onClick={handleSearch} className={AdminStyle.CFAButton}>
+                Search
+              </button>
+              </div>
+             
             </div>
 
             {postError && <p>{postError}</p>}
 
-            {(post || comment) && (
-              <div>
-                <h2>{searchType === 'post' ? 'Post Details:' : 'Comment Details:'}</h2>
-                {searchType === 'post' ? renderItemTable(post as Post) : renderItemTable(comment as Comment)}
-                <button onClick={deleteItem} className={AdminStyle.DeleteBtn}>Delete {searchType === 'post' ? 'Post' : 'Comment'}</button>
+            {post && (
+              <div className={AdminStyle.fetchedDiv}>
+                <h2>Post Details:</h2>
+                {renderItemTable(post)}
+                <button onClick={deleteItem} className={AdminStyle.DeleteBtn}>
+                  Delete Post
+                </button>
               </div>
             )}
+
+            {comment && (
+              <div className={AdminStyle.fetchedDiv}>
+                <h2>Comment Details:</h2>
+                {renderItemTable(comment)}
+                <button onClick={deleteItem} className={AdminStyle.DeleteBtn}>
+                  Delete Comment
+                </button>
+              </div>
+            )}
+
+            {/** Delete report for post or comment with id */}
+            <div className={AdminStyle.searchDiv}>
+              <input
+                className={AdminStyle.input}
+                type="text"
+                value={reportSearchId}
+                onChange={(e) => setReportSearchId(e.target.value)}
+                placeholder="Enter report ID"
+              />
+              <button onClick={deleteReport} className={AdminStyle.DeleteBtn}>
+                Delete Report
+              </button>
+            </div>
           </div>
         </div>
       </main>
     </>
   );
-}
+};
 
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const session = await getSession(context);
 
+  if (!session || session.user.role !== 'admin') {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    };
+  }
 
+  return {
+    props: { session }, // Pass any props if needed
+  };
+};
+
+export default Admin;

@@ -14,6 +14,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       // Hash the password before storing it
       const hashedPassword = await hash(pwd, 10);
 
+      // Determine user role based on email
+      const role = email === 'admin-rmt@admin.com' ? 'admin' : 'user';
+
       // Create user in the database
       const newUser = await prisma.user.create({
         data: {
@@ -25,6 +28,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           email,
           password: hashedPassword,
           Image: avatar,
+          role,
         },
       });
 

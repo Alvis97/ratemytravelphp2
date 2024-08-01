@@ -1,3 +1,4 @@
+// pages/api/auth/[...nextauth].ts
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import bcrypt from 'bcrypt';
@@ -23,9 +24,8 @@ export default NextAuth({
         });
 
         if (user && (await bcrypt.compare(credentials.password, user.password))) {
-          // Hardcoding roles for simplicity
-          const role = user.email === 'admin-rmt@admin.com' ? 'admin' : 'user';
-          return { id: user.id, email: user.email, role };
+          // Return user with role
+          return { id: user.id, email: user.email, role: user.email === 'admin-rmt@admin.com' ? 'admin' : 'user' };
         } else {
           throw new Error('Invalid email or password');
         }
@@ -33,7 +33,7 @@ export default NextAuth({
     }),
   ],
   pages: {
-    signIn: '/auth/signin', // Custom sign-in page
+    signIn: '/auth/signin',
   },
   session: {
     strategy: 'jwt',
@@ -52,13 +52,15 @@ export default NextAuth({
         session.user = {
           id: token.id as string,
           email: token.email as string,
-          role: token.role as string, // Add role to session user
-        } as any; // Use 'as any' to bypass type checking (consider refining types further)
+          role: token.role as string,
+        };
       }
       return session;
     },
   },
 });
+
+
 
 
 
