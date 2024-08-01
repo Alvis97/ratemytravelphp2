@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import commentStyle from '../styles/components/comment.module.scss';
+import { Report } from './Icons';
+import ReportModal from './ReportModal';
+
 
 interface Comment {
   id: string;
@@ -17,6 +20,8 @@ const CommentComponent: React.FC<CommentComponentProps> = ({ postId }) => {
   const [newComment, setNewComment] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [selectedCommentId, setSelectedCommentId] = useState<string | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchComments = async () => {
@@ -26,7 +31,6 @@ const CommentComponent: React.FC<CommentComponentProps> = ({ postId }) => {
           throw new Error('Failed to fetch comments');
         }
         const data = await response.json();
-        console.log('Fetched comments:', JSON.stringify(data, null, 2)); // Detailed log
         setComments(data);
       } catch (err: any) {
         setError(err.message || 'An unexpected error occurred');
@@ -66,6 +70,31 @@ const CommentComponent: React.FC<CommentComponentProps> = ({ postId }) => {
     }
   };
 
+  const handleReportComment = async (reason: string) => {
+    if (selectedCommentId) {
+      try {
+        const response = await fetch('/api/reportComment', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ commentId: selectedCommentId, reason }),
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to report comment');
+        }
+
+        await response.json();
+        setIsModalOpen(false);
+        alert('Comment reported successfully');
+        // Optionally, refresh the comments or update the UI accordingly
+      } catch (err: any) {
+        setError(err.message || 'An unexpected error occurred');
+      }
+    }
+  };
+
   return (
     <div>
       {loading ? (
@@ -81,13 +110,26 @@ const CommentComponent: React.FC<CommentComponentProps> = ({ postId }) => {
                 <div className={commentStyle.TopContainer}>
 
                   <div className={commentStyle.Left}>
+                    {comment.user ? (
+                    <>
                     <div>
+
                       <img src={`/images/${comment.user.Image}`} className={commentStyle.profilePic} alt="profile image"/>
                     </div>
                     <div className={commentStyle.container}>
-                      <p className={commentStyle.Name}>{comment.user.firstName}, {comment.user.age}</p>
-                      <p className={commentStyle.pronounce}>{comment.user.pronounce}</p>
+                      <p className={commentStyle.Name}>
+                          {comment.user.firstName}, 
+                        {comment.user.age} 
+                   
+                      </p>
+                      <p className={commentStyle.pronounce}>
+                      {comment.user.pronounce} 
+                        </p>
                     </div>
+                    </>
+                    ) : (
+                      <p>User information is missing</p>
+                    )}
                   </div>
 
                   <div className={commentStyle.right}>
@@ -99,7 +141,15 @@ const CommentComponent: React.FC<CommentComponentProps> = ({ postId }) => {
                 <p className={commentStyle.content}>{comment.content}</p>
 
                 <div className={commentStyle.bottom}>
-                  <button className={commentStyle.btn}>°°°</button>
+                  <button 
+                    className={commentStyle.btn}
+                    onClick={() => {
+                      setSelectedCommentId(comment.id);
+                      setIsModalOpen(true);
+                    }}
+                  >
+                    <Report/>
+                  </button>
                 </div>
               </div>
             ))
@@ -116,6 +166,13 @@ const CommentComponent: React.FC<CommentComponentProps> = ({ postId }) => {
             />
             <button type="submit" className={commentStyle.CFAButton}>Submit</button>
           </form>
+          <ReportModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+        onSubmit={handleReportComment}
+        itemType="comment" // or "post" depending on the context
+        itemId={selectedCommentId || ""} // Pass the selected comment ID
+      />
         </div>
       )}
     </div>

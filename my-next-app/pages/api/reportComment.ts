@@ -13,11 +13,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 
     try {
-      const { postId, content } = req.body;
+      const { commentId, reason } = req.body;
 
-      // Validate postId and content
-      if (!postId || !content) {
-        return res.status(400).json({ error: 'Post ID and content are required' });
+      if (!commentId || !reason) {
+        return res.status(400).json({ error: 'Comment ID and reason are required' });
       }
 
       const user = await prisma.user.findUnique({
@@ -28,20 +27,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(404).json({ error: 'User not found' });
       }
 
-      const newComment = await prisma.comment.create({
+      const newReport = await prisma.report.create({
         data: {
-          content,
-          postId: parseInt(postId, 10),
+          reason,
+          commentId: parseInt(commentId, 10),
           userId: user.id,
-        },
-        include: {
-          user: true,
+          date: new Date(),
         },
       });
 
-      res.status(200).json(newComment);
+      res.status(200).json(newReport);
     } catch (error) {
-      console.error('Error adding comment:', error);
+      console.error('Error reporting comment:', error);
       res.status(500).json({ error: 'Internal Server Error' });
     }
   } else {
@@ -49,4 +46,3 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     res.status(405).end(`Method ${req.method} Not Allowed`);
   }
 }
-

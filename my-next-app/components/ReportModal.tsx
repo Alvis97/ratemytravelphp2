@@ -5,9 +5,11 @@ interface ReportModalProps {
   isOpen: boolean;
   onClose: () => void;
   onSubmit: (reason: string) => void;
+  itemType: "post" | "comment"; // New prop to differentiate between post and comment
+  itemId: string; // New prop to store the ID of the item being reported
 }
 
-const ReportModal: React.FC<ReportModalProps> = ({ isOpen, onClose, onSubmit }) => {
+const ReportModal: React.FC<ReportModalProps> = ({ isOpen, onClose, onSubmit, itemType, itemId }) => {
   const [reason, setReason] = useState("");
 
   const handleReasonChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -17,7 +19,8 @@ const ReportModal: React.FC<ReportModalProps> = ({ isOpen, onClose, onSubmit }) 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (reason.trim()) {
-      onSubmit(reason);
+      onSubmit(reason); // You may want to include itemId and itemType in onSubmit if necessary
+      onClose(); // Close the modal after submitting
     }
   };
 
@@ -27,8 +30,10 @@ const ReportModal: React.FC<ReportModalProps> = ({ isOpen, onClose, onSubmit }) 
     <div className={modalStyle.modalOverlay}>
       <div className={modalStyle.modalContent}>
         <button className={modalStyle.closeButton} onClick={onClose}>×</button>
-        <h2 className={modalStyle.h2}>Report Post</h2>
-        <p>Does this post state anything problematic? Please report to our moderators and they will take further actions.</p>
+        <h2 className={modalStyle.h2}>Report</h2>
+        <p>
+            Does this state anything problematic? Please report to our moderators and they will take further actions.
+        </p>
         <form onSubmit={handleSubmit}>
           <textarea
             className={modalStyle.textarea}
@@ -45,3 +50,4 @@ const ReportModal: React.FC<ReportModalProps> = ({ isOpen, onClose, onSubmit }) 
 };
 
 export default ReportModal;
+

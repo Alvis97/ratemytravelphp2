@@ -86,16 +86,23 @@ model Comment {
   postId      Int       // Foreign key to Post model
   userId      String    // Foreign key to User model
   date        DateTime  @default(now())
-  post        Post      @relation(fields: [postId], references: [id])
+  firstName   String?
+  age         String?
+  Image       String?
+  pronounce   String?
+  post        Post      @relation(fields: [postId], references: [id], onDelete: Cascade)
   user        User      @relation(fields: [userId], references: [id])
+  reports     Report[]
 }
 
 model Report {
   id          Int       @id @default(autoincrement())
   reason      String
-  postId      Int       // Foreign key to Post model
+  postId      Int?       // Foreign key to Post model
+  commentId   Int?
   userId      String    // Foreign key to User model
   date        DateTime  @default(now())
-  post        Post      @relation(fields: [postId], references: [id])
+  post        Post?      @relation(fields: [postId], references: [id], onDelete: Cascade)
+  comment     Comment?   @relation(fields: [commentId], references: [id], onDelete: Cascade)
   user        User      @relation(fields: [userId], references: [id])
 }
