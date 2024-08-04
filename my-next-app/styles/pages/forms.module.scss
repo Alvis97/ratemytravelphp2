@@ -237,3 +237,81 @@
 .avatarLabel input[type="radio"]:checked + img {
   border-color: rgb(var(--orange)); 
 }
+
+.closeButton {
+  @include exitBtn;
+}
+
+
+@media screen and (max-width: 985px) {
+  
+  .loginForm{
+    height: fit-content;
+    width: 700px;
+  }
+
+  .child1 {
+    width: 500px;
+    padding-right: 20px;
+  }
+  
+  .h1 {
+    font-family: Monofett;
+    font-size: 70px;
+    text-align: center;
+  }
+
+}
+
+@media screen and (max-width: 746px) {
+  
+  .loginForm{
+    height: fit-content;
+    width: 600px;
+    border: 0px;
+    @include bigShadow;
+    box-shadow: 0;
+
+  }
+
+  .child1 {
+    width: 270px;
+    padding-right: 20px;
+  }
+  
+  .h1 {
+    font-family: Monofett;
+    font-size: 50px;
+    text-align: center;
+  }
+
+}
+
+@media screen and (max-width: 646px) {
+  
+  .loginForm{
+    height: fit-content;
+    width: fit-content;
+    border: 0px;
+    @include bigShadow;
+    box-shadow: 0;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+
+  }
+
+  .child1 {
+    width: 200px;
+    height: 350px;
+    padding-right: 20px;
+    border-right: 0px solid rgb(var(--black));
+  }
+  
+  .h1 {
+    font-family: Monofett;
+    font-size: 50px;
+    text-align: center;
+  }
+
+}

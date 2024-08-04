@@ -1,5 +1,5 @@
 // types/next-auth.d.ts
-import NextAuth from 'next-auth';
+import NextAuth, { DefaultSession } from 'next-auth';
 import { JWT } from 'next-auth/jwt';
 
 declare module 'next-auth' {
@@ -10,7 +10,7 @@ declare module 'next-auth' {
       name?: string;
       image?: string;
       role?: string; // Ensure role is included
-    }
+    } & DefaultSession['user'];
   }
 }
 

@@ -33,8 +33,135 @@
     li{
         font-family: Inter;
         margin-top: 5px;
-     
     }
-
-
 }
+
+@media screen and (max-width: 1000px) {
+    .parent{
+        width: 100vw;
+        padding: 80px 50px;
+    
+        h1{
+            font-family: Monofett;
+            font-size: 100px;
+            width: 500px;
+        }
+    
+        p{
+            font-family: Inter;
+            width: 700px;
+            font-size: 20px;
+            margin: 10px 0;
+        }
+    
+        h2{
+            font-family: Inter;
+            font-weight: bold;
+            margin-top: 50px;
+        }
+    
+        ul{
+            margin-left:20px;
+            margin-top: 10px;
+            width: 600px;
+        }
+    
+        li{
+            font-family: Inter;
+            margin-top: 5px;
+        }
+    }
+}
+
+@media screen and (max-width: 830px) {
+    .parent{
+        width: 100vw;
+        padding: 80px 50px;
+    
+        h1{
+            font-family: Monofett;
+            font-size: 80px;
+            width: 500px;
+        }
+    
+        p{
+            width: 550px;
+        }
+    
+        h2{
+            font-size: 20px;
+        }
+    
+        ul{
+            width: 550px;
+            font-size: 16px;
+        }
+    
+        li{
+            font-size: 16px;
+        }
+    }
+}
+
+@media screen and (max-width: 670px) {
+    .parent{
+        width: 100vw;
+        padding: 80px 60px 0 30px;
+    
+        h1{
+            font-family: Monofett;
+            font-size: 60px;
+            width: auto;
+        }
+    
+        p{
+            width: auto;
+            font-size: 16px;
+        }
+    
+        h2{
+            font-size: 20px;
+        }
+    
+        ul{
+            width: auto;
+            font-size: 16px;
+        }
+    
+        li{
+            font-size: 16px;
+        }
+    }
+}
+
+@media screen and (max-width: 430px) {
+    .parent{
+        width: 100vw;
+        padding: 80px 50px 0 30px;
+    
+        h1{
+            font-family: Monofett;
+            font-size: 50px;
+            width: auto;
+        }
+    
+        p{
+            width: auto;
+            font-size: 14px;
+        }
+    
+        h2{
+            font-size: 16px;
+        }
+    
+        ul{
+            width: auto;
+            font-size: 14px;
+        }
+    
+        li{
+            font-size: 14px;
+        }
+    }
+}
+

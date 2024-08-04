@@ -2,6 +2,11 @@
     margin-top: 7px;
 }
 
+.globe {
+  width: 303px;
+  height: 322px;
+}
+
 .stars{
     position: absolute;
     z-index: 1000;
@@ -27,3 +32,43 @@
     margin: 5px;
   }
 
+  @media screen and (max-width: 985px) {
+  
+    .stars{
+      top: 90px;
+      left: 0px;
+  }
+  
+  }
+
+  @media screen and (max-width: 746px) {
+
+    .globe {
+      width: 253px;
+      height: 222px;
+    }
+  
+    .stars{
+      top: 150px;
+      left: 0px;
+      height: 120px;
+      width: 100px;
+  }
+  
+  }
+
+  @media screen and (max-width: 746px) {
+
+    .globe {
+      width: 253px;
+      height: 222px;
+    }
+  
+    .stars{
+      top: 70px;
+      left: -20px;
+      height: 120px;
+      width: 100px;
+  }
+  
+  }

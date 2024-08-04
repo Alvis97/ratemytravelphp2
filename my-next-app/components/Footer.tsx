@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import FooterStyle from "../styles/components/footer.module.scss";
 import Link from "next/link";
 import { Instagram } from "./Icons";
+
+//Styles
+import FooterStyle from "../styles/components/footer.module.scss";
 
 function Footer() {
 
@@ -9,11 +11,10 @@ function Footer() {
     <div className={FooterStyle.Parent}>
         <div className={FooterStyle.left} >
             <h2>Rate My Travels</h2>
-            <Link className={FooterStyle.link} href={""}>Home</Link><br />
-            <Link className={FooterStyle.link} href={""}>Community Guidelines</Link><br /><br />
-            <Link className={FooterStyle.link} href={""}>SiteMap</Link><br /><br />
+            <Link className={FooterStyle.link} href={""}>Home</Link>
+            <Link className={FooterStyle.link} href={""}>Community Guidelines</Link>
+            <Link className={FooterStyle.link} href={""}>SiteMap</Link>
             <div className={FooterStyle.icons}>
-               <Link className={FooterStyle.link}href={""}> <Instagram/> </Link>
             </div>
         </div>
 
@@ -22,7 +23,7 @@ function Footer() {
 
 
         <div className={FooterStyle.left}>
-        <svg width="539" height="403" viewBox="0 0 539 403" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg className={FooterStyle.globeClouds} width="539" height="403" viewBox="0 0 539 403" fill="none" xmlns="http://www.w3.org/2000/svg">
         <ellipse cx="385.934" cy="236.255" rx="146.088" ry="140.05" fill="url(#paint0_linear_22_1194)"/>
         <ellipse cx="392.912" cy="140.05" rx="146.088" ry="140.05" fill="url(#paint1_linear_22_1194)"/>
         <ellipse cx="329.68" cy="228.593" rx="105.532" ry="98.3331" fill="url(#paint2_linear_22_1194)"/>

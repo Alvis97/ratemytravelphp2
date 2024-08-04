@@ -75,10 +75,10 @@ export default function Guidelines() {
         </ul>
 
         <Separation/>
-        <Footer/>
+      
         
         </div>
-     
+        <Footer/>
       
        
       </main>

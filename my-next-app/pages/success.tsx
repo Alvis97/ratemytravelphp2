@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import Post from "../components/Post";
+import { Pen } from "../components/Icons";
 
 // Style
 import SuccessStyle from "../styles/pages/success.module.scss";
-import { Pen } from "../components/Icons";
+
 
 //Creating a array for the user to store all information???
 interface User {

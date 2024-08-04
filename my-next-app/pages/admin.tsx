@@ -3,8 +3,8 @@
 import { GetServerSideProps } from 'next';
 import { getSession, useSession } from 'next-auth/react';
 import { useEffect, useState } from 'react';
-import AdminStyle from '../styles/pages/admin.module.scss'; // Adjust the path as necessary
-import Head from 'next/head'; // Correct import for the Head component
+import AdminStyle from '../styles/pages/admin.module.scss'; 
+import Head from 'next/head'; 
 
 interface Report {
   id: string;
@@ -27,7 +27,7 @@ interface Comment {
   content: string;
 }
 
-const Admin: React.FC = () => {
+const AdminPage: React.FC = () => {
   const { data: session, status } = useSession();
   const [reports, setReports] = useState<Report[]>([]);
   const [error, setError] = useState<string | null>(null);
@@ -293,4 +293,4 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   };
 };
 
-export default Admin;
+export default AdminPage;

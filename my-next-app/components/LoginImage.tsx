@@ -12,7 +12,7 @@ interface Props {
 function LoginImage(props: Props) {
     return (
       <div {...props}>
-      <svg width="303" height="322" viewBox="0 0 303 322" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg className={iconStyles.globe} width="303" height="322" viewBox="0 0 303 322" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g filter="url(#filter0_f_58_285)">
         <ellipse cx="143.5" cy="303" rx="133.5" ry="15" fill="#D9D9D9"/>
         </g>

@@ -1,12 +1,14 @@
 // pages/api/auth/[...nextauth].ts
-import NextAuth from 'next-auth';
+import NextAuth, { AuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import bcrypt from 'bcrypt';
 import { PrismaClient } from '@prisma/client';
 
+// Initialize Prisma Client
 const prisma = new PrismaClient();
 
-export default NextAuth({
+// Define the authOptions with proper type
+export const authOptions: AuthOptions = {
   providers: [
     CredentialsProvider({
       name: 'Credentials',
@@ -33,7 +35,7 @@ export default NextAuth({
     }),
   ],
   pages: {
-    signIn: '/auth/signin',
+    signIn: '/auth/logIn',
   },
   session: {
     strategy: 'jwt',
@@ -43,7 +45,7 @@ export default NextAuth({
       if (user) {
         token.id = user.id;
         token.email = user.email;
-        token.role = user.role; // Add role to token
+        token.role = user.role; 
       }
       return token;
     },
@@ -58,9 +60,7 @@ export default NextAuth({
       return session;
     },
   },
-});
+};
 
-
-
-
-
+// Default export
+export default NextAuth(authOptions);

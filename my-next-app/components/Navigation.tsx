@@ -39,7 +39,7 @@ const Navigation = () => {
                       Logout
                     </button>
                     <span className={navigationStyle.span}>|</span>
-                    <Link href="/profile" className={navigationStyle.CFAButton}>Account</Link>
+                    <Link href="/account" className={navigationStyle.CFAButton}>Account</Link>
                   </>
                 </div>
             </div>

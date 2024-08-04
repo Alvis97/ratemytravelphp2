@@ -1,0 +1,221 @@
+@use "../mixins.scss" as mixins;
+@import '../mixins';
+
+.parent {
+    width: 100vw;
+    text-align: center;
+    margin-top: 50px;
+    padding: 20px;
+
+
+    .h1{
+        font-family: Monofett;
+        font-size: 80px;
+        margin: auto;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .parent {
+        padding: 20px;
+    
+        .h1{
+            font-family: Monofett;
+            font-size: 60px;
+            margin: auto;
+        }
+    }
+}
+
+.sibling{
+    width: 100%;
+    margin-top: 50px;
+    text-align: center;
+    font-family: Inter;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.section1{
+    padding: 20px;
+    text-align: center;
+    width: 550px;
+    height: 250px;
+    margin: 10px;
+    background-color: white;
+    border-radius: var(--bigRadius);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    @include bigShadow;
+
+  
+
+    .s1Image {
+        border-radius: 100%;
+        height: 200px;
+        width: 200px;
+    }
+
+    .Child2 {
+        text-align: left;
+        font-family: Inter;
+
+        .p{
+            font-family: Inter;
+        }
+
+        .strong{
+            font-family: Inter;
+        }
+    }
+}
+
+.userInfo {
+    width: 800px;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Overlay effect */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modalContent {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    width: fit-content;
+    max-width: 90%;
+    position: relative;
+  }
+
+  .CFAButton {
+    @include CFAButton();
+    margin-top: 10px;
+}
+
+@media screen and (max-width: 520px) {
+    
+    .section1{
+        padding: 20px;
+        text-align: center;
+        width: fit-content;
+        height: fit-content;
+        margin: 10px;
+        background-color: white;
+        border-radius: var(--bigRadius);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        @include bigShadow;
+    
+        .s1Image {
+            border-radius: 100%;
+            height: 200px;
+            width: 200px;
+        }
+    
+        .Child2 {
+            text-align: left;
+            font-family: Inter;
+    
+            .p{
+                font-family: Inter;
+            }
+    
+            .strong{
+                font-family: Inter;
+            }
+        }
+    }
+
+}
+
+
+
+//Update Password styles
+
+.form {
+    padding: 10px 20px;
+    height: 250px;
+    border-radius: var(--bigRadius);
+    background-color: white;
+    max-width: 300px;
+    @include bigShadow;
+    text-align: left;
+    margin: 10px;
+
+    .h2 {
+        font-family: Inter;
+        margin-bottom: 10px;
+    }
+
+    .label {
+        font-size: 16px;
+    }
+
+    .input {
+        height: 40px;
+    }
+}
+
+
+//Delete account
+.deleteDiv {
+    padding: 20px;
+    height: 250px;
+    border-radius: var(--bigRadius);
+    background-color: white;
+    max-width: 300px;
+    @include bigShadow;
+    text-align: left;
+    margin: 10px;
+}
+
+.DeleteButton {
+    @include DeleteButton();
+    margin-top: 10px;
+}
+
+//Fetch delete comments
+.commentsContainer {
+    padding: 20px;
+    border-radius: var(--bigRadius);
+    background-color:white;
+    max-width: 400px;
+    height: fit-content;
+    @include bigShadow;
+    text-align: left;
+    margin: 10px;
+
+    .h2{
+        font-family: Inter;
+        margin-bottom: 10px;
+    }
+}
+
+.comment {
+    padding: 10px;
+    border-radius: var(--bigRadius);
+    background-color: white;
+    width: fit-content;
+    @include bigShadow;
+    text-align: left;
+    width: 100%;
+}
+
+
+
+
+ 

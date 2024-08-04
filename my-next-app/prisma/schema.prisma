@@ -75,7 +75,7 @@ model Post {
   userPronouns String
   content     String
   date        DateTime  @default(now())
-  user        User      @relation(fields: [userId], references: [id]) // Define the relation to User
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade) // Define the relation to User
   comments    Comment[] // One-to-many relationship with Comment model
   reports     Report[]  // One-to-many relationship with Report model
 }
@@ -91,7 +91,7 @@ model Comment {
   Image       String?
   pronounce   String?
   post        Post      @relation(fields: [postId], references: [id], onDelete: Cascade)
-  user        User      @relation(fields: [userId], references: [id])
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   reports     Report[]
 }
 
