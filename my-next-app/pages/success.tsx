@@ -5,6 +5,9 @@ import { Pen } from "../components/Icons";
 
 // Style
 import SuccessStyle from "../styles/pages/success.module.scss";
+import { WritePostIcon } from "../components/LoginImage";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
 
 
 //Creating a array for the user to store all information???
@@ -38,6 +41,8 @@ const Success = () => {
   const [error, setError] = useState<string | null>(null);
   const [content, setContent] = useState<string>("");
   const [showModal, setShowModal] = useState(false);
+  const { data: session, status } = useSession();
+  const router = useRouter();
 
   //Starting the progress of getting the details
   useEffect(() => {
@@ -116,13 +121,16 @@ const Success = () => {
     }
   };
 
-  //If its loading show this div
-  if (loading) {
+  useEffect(() => {
+    // Redirect to login page if the session is not available
+    if (status === 'unauthenticated') {
+      router.push('/login');
+    }
+  }, [status, router]);
+
+  // Return null or a loading indicator while redirecting
+  if (status === 'loading' || status === 'unauthenticated') {
     return <div>Loading...</div>;
-  }
- //If its an error show this div
-  if (error) {
-    return <div>Error: {error}</div>;
   }
 
   return (
@@ -142,8 +150,8 @@ const Success = () => {
             </div>
             <div className={SuccessStyle.writePostDiv}>
             <button className={SuccessStyle.writePost} onClick={() => setShowModal(true)}>
-                <Pen/>
-                Click here to write a Post
+                <WritePostIcon/>
+                Write a Post
             </button>
             </div>
             {showModal && (

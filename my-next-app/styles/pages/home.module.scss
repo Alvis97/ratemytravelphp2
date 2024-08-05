@@ -15,7 +15,22 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    animation: pulse 4s ease-in-out infinite;
 }
+
+@keyframes pulse {
+    0% {
+      background-size: 80%;
+    }
+    50% {
+      background-size: 100%; /* Adjust this percentage to control the growth */
+    }
+    100% {
+      background-size: 80%;
+    }
+  }
+  
 
 .textSection{
 
@@ -39,50 +54,120 @@
     }
 }
 
+
+@media screen and (max-width: 996px) {
+
+    .section1{
+        width: 100vw;
+        height: 100vh;
+    }
+
+    .textSection{
+    
+        h1{
+            font-size: 100px;
+        }
+    }
+  }
+
+  @media screen and (max-width: 820px) {
+
+    .section1{
+        width: 100vw;
+        height: 70vh;
+        margin-top: 20px;
+    }
+
+    .textSection{
+    
+        h1{
+            font-size: 80px;
+            margin-bottom: 20px;
+        }
+    
+        p{
+            width: 200px;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+    }
+  }
+
+  @media screen and (max-width: 673px) {
+
+    .section1{
+        width: 100vw;
+        height: 60vh;
+        margin-top: 20px;
+    }
+
+    .textSection{
+
+        width: fit-content;
+        height: 180px;
+    
+        h1{
+            font-size: 60px;
+        }
+    
+        p{
+            width: 150px;
+            font-size: 12px;
+            margin-top: -10px;
+        }
+    }
+  }
+
+  @media screen and (max-width: 490px) {
+
+    .section1{
+        width: 100vw;
+        height: 40vh;
+        margin-top: 50px;
+        background-color: pink;
+    }
+
+    .textSection{
+
+        width: fit-content;
+        height: 180px;
+    
+        h1{
+            font-size: 40px;
+        }
+    
+        p{
+            width: 150px;
+            font-size: 10px;
+            margin-top: -20px;
+        }
+    }
+
+    .section1 {
+    
+        animation: pulse 4s ease-in-out infinite;
+    }
+    
+    @keyframes pulse {
+        0% {
+          background-size: 110%;
+        }
+        50% {
+          background-size: 130%; /* Adjust this percentage to control the growth */
+        }
+        100% {
+          background-size: 110%;
+        }
+      }
+  }
+
+
 .section2{
     display: flex;
     width: 90vw;
     margin: auto;
     align-items: center;
     justify-content: space-evenly;
-}
-
-.section3{
-    width: fit-content;
-    height: 80vh;
-    display: flex;
-    justify-content: center;
-    position: relative;
-
-    .MailDiv{
-        width: 400px;
-        position: absolute;
-        top: 180px;
-        left: 80px;
-        right: auto;
-
-        h2{
-            width: 400px;
-            font-size: 30px;
-        }
-    }
-
-    .MailIcon{
-        width: fit-content;
-        height: fit-content;
-        margin: 100px 100px 0 -180px;
-        
-    }
-}
-
-.input{
-  border-bottom: 1px solid rgb(var(--black));
-  width: 300px;
-  margin-top: 20px;
-}
-
-.CFAButton{
-    @include CFAButton;
 }
 
 .CardParent{
@@ -115,4 +200,203 @@
         width: 250px;
     }
 }
+
+@media screen and (max-width: 1099px) {
+    .section2{
+        width: 90vw;
+    }
+
+    .CardParent{
+        height: 300px;
+        width: 270px;
+    }
+  }
+
+  @media screen and (max-width: 963px) {
+    .section2{
+        width: 90vw;
+        justify-content: space-between;
+    }
+
+    .CardParent{
+        height: 250px;
+        width: 220px;
+
+        h3{
+            font-family: Inter;
+            color: rgb(var(--white));
+            text-align: center;
+            font-size: 16px;
+            width: 200px;
+        }
+    }
+  }
+
+  @media screen and (max-width: 750px) {
+    .section2{
+        width: 90vw;
+        justify-content: space-between;
+    }
+
+    .CardParent{
+        height: 200px;
+        width: 180px;
+
+        h3{
+            font-size: 14px;
+            width: 150px;
+        }
+    }
+  }
+
+  @media screen and (max-width: 630px) {
+    .section2{
+        width: 80vw;
+        height: fit-content;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .CardParent{
+        height: 250px;
+        width: 210px;
+        margin: 10px;
+
+        h3{
+            font-family: Inter;
+            color: rgb(var(--white));
+            text-align: center;
+            font-size: 16px;
+            width: 190px;
+        }
+    }
+  }
+
+/*
+
+.section3{
+    width: fit-content;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    position: relative;
+
+    .MailDiv{
+        width: 400px;
+        position: absolute;
+        top: 180px;
+        left: 80px;
+        right: auto;
+
+        h2{
+            width: 400px;
+            font-size: 30px;
+            font-family: Inter;
+            font-weight: bold;
+        }
+    }
+
+    .MailIcon{
+        width: fit-content;
+        height: fit-content;
+        margin: 100px 100px 0 -180px;
+        
+    }
+}
+
+.input{
+  border-bottom: 1px solid rgb(var(--black));
+  width: 300px;
+  margin-top: 20px;
+}
+
+.CFAButton{
+    @include CFAButton;
+}
+
+@media screen and (max-width: 869px) {
+  
+    .section3{
+        height: 50vh;
+
+        .MailDiv{
+            width: 400px;
+            position: absolute;
+            top: 140px;
+            left: 80px;
+            right: auto;
+           
+    
+            h2{
+                width: 400px;
+                font-size: 28px;
+            }
+        }
+    }
+  }
+
+  @media screen and (max-width: 690px) {
+  
+    .section3{
+
+    
+        .MailDiv{
+            width: 300px;
+            position: absolute;
+            top: 90px;
+            left: 80px;
+            right: auto;
+           
+    
+            h2{
+                width: 300px;
+                font-size: 22px;
+            }
+        }
+    }
+
+    .input{
+        width: 200px;
+        margin-top: 20px;
+      }
+      
+      .CFAButton{
+          @include CFAButton;
+          margin: 5px 10px;
+      }
+  }
+
+  @media screen and (max-width: 496px) {
+  
+    .section3{
+        height: 30vh;
+    
+        .MailDiv{
+            width: 300px;
+            position: absolute;
+            top: 70px;
+            left: 70px;
+            right: auto;
+           
+    
+            h2{
+                width: 200px;
+                font-size: 16px;
+            }
+        }
+    }
+
+    .input{
+        width: 150px;
+        margin-top: 10px;
+      }
+      
+      .CFAButton{
+          @include CFAButton;
+          margin: 5px 10px;
+          font-size: 12px;
+      }
+  }
+
+*/
 

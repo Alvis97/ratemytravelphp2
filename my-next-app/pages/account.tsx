@@ -4,13 +4,14 @@ import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 import { useSession, signIn, signOut } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import UpdatePassword from '../components/UpdatePasswordForm';
+import DeleteAccountButton from '../components/DeleteAccountButton';
+import UserComments from '../components/UserComment';
+import UserPosts from '../components/UserPosts';
 
 //Styles
 import accountStyles from '../styles/pages/account.module.scss';
 import formStyle from '../styles/pages/forms.module.scss';
-import DeleteAccountButton from '../components/DeleteAccountButton';
-import UserComments from '../components/UserComment';
-import UserPosts from '../components/UserPosts';
+
 
 interface User {
   id: string;
@@ -40,6 +41,7 @@ const Account = () => {
   const [showModal, setShowModal] = useState(false);
   const [errors, setErrors] = useState<Errors>({});
   const { data: session, status } = useSession();
+  const router = useRouter();
 
   const [formData, setFormData] = useState({
     id: '',
@@ -148,16 +150,16 @@ const Account = () => {
     }
   };
 
-  if (status === 'loading') {
-    return <div>Loading...</div>;
-  }
+  useEffect(() => {
+    // Redirect to login page if the session is not available
+    if (status === 'unauthenticated') {
+      router.push('/login');
+    }
+  }, [status, router]);
 
-  if (!session) {
-    return (
-      <div>
-        You are not signed in. <button onClick={() => signIn()}>Sign in</button>
-      </div>
-    );
+  // Return null or a loading indicator while redirecting
+  if (status === 'loading' || status === 'unauthenticated') {
+    return <div>Loading...</div>;
   }
 
   return (

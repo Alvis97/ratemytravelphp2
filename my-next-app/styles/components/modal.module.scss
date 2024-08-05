@@ -16,12 +16,13 @@
 
 .modalContent {
   background-color: rgb(var(--white));
-  padding: 10px 30px;
+  padding: 10px 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   width: 500px;
   height: fit-content;
   overflow-y: auto; 
+  margin: 15px;
 
   .h2{
      font-family: Inter;
@@ -50,4 +51,24 @@
 
 .submitButton {
   @include CFAButton();
+}
+
+@media screen and (max-width: 552px) {
+
+  .modalContent {
+    background-color: rgb(var(--white));
+    padding: 10px 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 500px;
+    height: fit-content;
+    overflow-y: auto; 
+    margin: 15px;
+  
+    .h2{
+       font-family: Inter;
+       margin-bottom: 5px;
+    }
+  }
+
 }

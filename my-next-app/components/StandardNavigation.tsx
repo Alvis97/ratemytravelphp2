@@ -1,4 +1,4 @@
-// components/Navigation.tsx
+// components/StandardNavigation.tsx
 import { signIn, signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
 import React from 'react';
@@ -7,7 +7,7 @@ import React from 'react';
 import navigationStyle from "../styles/components/navigation.module.scss";
 import { LogoSmall } from './Icons';
 
-const Navigation = () => {
+const StandardNavigation = () => {
   const { data: session, status } = useSession();
 
   if (status === 'loading') {
@@ -73,7 +73,8 @@ const Navigation = () => {
   );
 };
 
-export default Navigation;
+export default StandardNavigation;
+
 
 
 

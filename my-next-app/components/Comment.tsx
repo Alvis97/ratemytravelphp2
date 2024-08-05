@@ -22,6 +22,7 @@ const CommentComponent: React.FC<CommentComponentProps> = ({ postId }) => {
   const [error, setError] = useState<string | null>(null);
   const [selectedCommentId, setSelectedCommentId] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
   useEffect(() => {
     const fetchComments = async () => {
@@ -87,7 +88,8 @@ const CommentComponent: React.FC<CommentComponentProps> = ({ postId }) => {
 
         await response.json();
         setIsModalOpen(false);
-        alert('Comment reported successfully');
+        setShowSuccessMessage(true);
+        setTimeout(() => setShowSuccessMessage(false), 3000);
         // Optionally, refresh the comments or update the UI accordingly
       } catch (err: any) {
         setError(err.message || 'An unexpected error occurred');
@@ -106,6 +108,13 @@ const CommentComponent: React.FC<CommentComponentProps> = ({ postId }) => {
           {comments.length > 0 ? (
             comments.map((comment) => (
               <div key={comment.id} className={commentStyle.commentDiv}>
+
+{showSuccessMessage && (
+        <div className={commentStyle.successMessage}>
+          Thanks for your report! 
+          We take it from here.
+        </div>
+      )}
                 
                 <div className={commentStyle.TopContainer}>
 

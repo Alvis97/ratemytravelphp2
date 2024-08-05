@@ -2,14 +2,16 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router'; 
 import { signIn } from 'next-auth/react';
+import email from 'next-auth/providers/email';
 import { LoginImage, Stars } from '../components/LoginImage';
 import { Fb, Google } from '../components/Icons';
 import { validateSignUpForm, SignUpFormErrors } from '../utils/formValidation';
 
+//Styles
 import formStyle from '../styles/pages/forms.module.scss';
-import email from 'next-auth/providers/email';
 
-//use signup from router
+
+//use sign up from router
 const SignUp = () => {
   const router = useRouter();
   
@@ -50,7 +52,7 @@ const SignUp = () => {
     const validationErrors = validateSignUpForm(formData);
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
-      return; // Exit early if there are validation errors
+      return; // Exit if validation errors
     }
 
     // Include selected avatar in form data
@@ -61,7 +63,7 @@ const SignUp = () => {
 
     console.log('Submitting form data:', formDataWithAvatar);
 
-    // Send form data to the server
+    // check response data
     try {
       const response = await fetch('/api/signUp', {
         method: 'POST',
@@ -73,18 +75,7 @@ const SignUp = () => {
 
       if (response.ok) {
         console.log('Sign-up successful');
-        
-        // After successful sign-up, you can call `signIn` to automatically log the user in
-        //const result = await signIn('credentials', {
-          //redirect: false,
-          //email: formData.email,
-          //password: formData.pwd,
-        //});
-
-        //if (result?.error) {
-          //setErrors({ ...errors, form: 'Sign-up successful but login failed.' });
-        //} else {
-          router.push('/'); // Redirect to the home page on successful login
+          router.push('/'); 
         }
        else {
         throw new Error('Sign-up failed');

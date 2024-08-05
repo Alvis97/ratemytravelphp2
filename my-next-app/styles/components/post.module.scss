@@ -34,8 +34,6 @@
       flex-direction: column;
    }
 
-
-
    .bottom{
     padding: 0px 10px;
    }
@@ -101,4 +99,19 @@
    border: 1px solid #c3e6cb;
    border-radius: 5px;
    text-align: center;
+ }
+
+ @media screen and (max-width: 585px) {
+
+   .Post{
+      width: 90vw;
+      }
+
+      .divForAllTheComments {
+         width: 90vw;
+       }
+
+       .successMessage {
+         width: 90vw;
+       }
  }

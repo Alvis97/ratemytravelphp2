@@ -251,14 +251,21 @@
   }
 
   .child1 {
-    width: 500px;
+    width: 350px;
     padding-right: 20px;
   }
   
   .h1 {
     font-family: Monofett;
-    font-size: 70px;
+    font-size: 60px;
     text-align: center;
+  }
+
+  .child2 {
+    width:300px;
+    height: fit-content;
+    padding: 0px 20px;
+    box-sizing: border-box;
   }
 
 }

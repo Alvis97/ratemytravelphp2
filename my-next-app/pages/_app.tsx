@@ -1,13 +1,13 @@
 // pages/_app.tsx
 import React from 'react';
 import { SessionProvider } from 'next-auth/react';
-import Navigation from '../components/Navigation';
 import '../styles/globals.scss'; // Ensure you have this path correct
+import NavigationWrapper from '../components/NavigationWrapper';
 
 function MyApp({ Component, pageProps }) {
   return (
     <SessionProvider session={pageProps.session}>
-      <Navigation />
+      <NavigationWrapper />
       <Component {...pageProps} />
     </SessionProvider>
   );

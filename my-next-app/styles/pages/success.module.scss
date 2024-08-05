@@ -7,7 +7,7 @@
    display: flex;
    justify-content: center;
    align-items: center;
-   padding: 20px;
+
 }   
 
    .child1{
@@ -17,6 +17,14 @@
     flex-direction: column;
     align-items: center;
    }
+
+   @media screen and (max-width: 585px) {
+
+    .child1{
+        width: 100vw;
+        height: 100%;
+       }
+ }
 
    .modal {
     position: fixed;
@@ -29,6 +37,7 @@
     justify-content: center;
     align-items: center;
     z-index: 1000;
+    padding: 10px;
   }
   
   .modalContent {
@@ -63,10 +72,8 @@
     .p3 {
         font-family: Inter;
         font-size: 1px;
-        color: rgb(var(--black));
+        color: rgb(var(--black), 0);
     }
-
-  
 
     .CFAButton {
         @include CFAButton;
@@ -88,7 +95,7 @@
         border: 0px;
         height: 100px;
         width: 100%;
-        background-color: rgb(var(--white));
+        background-color: white;
         font-size: 16px;
         font-family: Inter;
     }
@@ -152,6 +159,20 @@
             left: 7px;
           }
     }
+
+    @media screen and (max-width: 552px) {
+     
+        .writePost {
+            padding: 15px 20px;
+        }
+
+        .writePostDiv{
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+        }
+       
+     }
 
 
 

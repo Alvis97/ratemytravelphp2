@@ -8,24 +8,109 @@
 }
 
 .MapDiv{
-   height: 600px;
-   width: 900px;
+   height: auto;
+   width: 80vw;
    margin: auto;
    padding-bottom: 0;
 }
 
+@media screen and (max-width: 1600px) {
+
+   .parent{
+      margin-top: 10vh;
+     }
+  
+   .MapDiv{
+      height: auto;
+      width: 90vw;
+      margin: auto;
+      padding-bottom: 0;
+   }
+ }
+
+ @media screen and (max-width: 995px) {
+
+   .parent{
+      margin-top: 20vh;
+     }
+ }
+
+ @media screen and (max-width: 552px) {
+   
+   .parent{
+      margin-top: 30vh;
+     }
+ }
+
+ @media screen and (max-width: 452px) {
+   
+   .parent{
+    
+     }
+ }
+
 .RateDiv {
    position: fixed;
-   left: 20px;
-   bottom: 20px;
-   background-color: rgb(var(--white));
-   border: 1px solid rgb(var(--grey));
-   padding: 20px;
+   right: 40px;
+   bottom: 40px;
+   background-color: rgb(var(--blue), 0);
    border-radius: var(--bigRadius);
-   width: 400px;
+   width: fit-content;
    height: fit-content;
-   @include bigShadow;
+   cursor: pointer;
 }
+
+.CFAButton2 {
+   font-family: Inter;
+   font-weight: 500;
+   color: rgb(var(--black));
+   border: solid 2.5px rgb(var(--black));
+   outline: 0;
+   padding: 7px 10px;
+   font-size: 1rem;
+   letter-spacing: 0;
+   background-color: rgb(var(--blue));
+   border-radius: var(--bigRadius);
+   position: relative;
+   cursor: pointer; 
+   
+   &::after {
+       content: '';
+       position: absolute;
+       top: 0;
+       left: 0;
+       width: 90%;
+       height: 90%;
+       background-color: rgb(var(--blue), 0.8);
+       z-index: -1;
+       border-radius: var(--bigRadius);
+       border: solid 2px rgb(var(--white));
+       box-shadow:  3px 3px 5px rgb(var(--white),0.5);
+       transition: all 0.5s ease-in-out;
+   }
+   &:hover::after {
+       width: 100%;
+       height: 100%;
+       top: 8px;
+       left: 8px;
+     }
+}
+
+@media screen and (max-width: 552px) {
+  
+   .RateDiv {
+      position: fixed;
+      left: 20px;
+      bottom: 20px;
+      background-color: rgb(var(--blue), 0);
+      border-radius: var(--bigRadius);
+      width: fit-content;
+      height: fit-content;
+      cursor: pointer;
+   }
+ }
+
+
 
 .h1{
    font-family: Inter;
@@ -80,8 +165,8 @@
  
  /* Style the image inside the label */
  .starLabel img {
-   width: 70px; 
-   height: 70px; 
+   width: 90px; 
+   height: 90px; 
    border: 5px solid transparent; 
    border-radius: 50%; 
    transition: border-color 0.3s;
@@ -92,3 +177,63 @@
  .starLabel input[type="radio"]:checked + img {
    border-color: rgb(var(--orange)); 
  }
+
+ @media screen and (max-width: 539px) {
+   
+   /* Style the image inside the label */
+   .starLabel img {
+    width: 70px; 
+    height: 70px; 
+    border: 5px solid transparent; 
+    border-radius: 50%; 
+    transition: border-color 0.3s;
+    margin-bottom: 0;
+    margin: 0;
+  }
+  
+  }
+
+ @media screen and (max-width: 429px) {
+   
+  /* Style the image inside the label */
+  .starLabel img {
+   width: 50px; 
+   height: 50px; 
+   border: 5px solid transparent; 
+   border-radius: 50%; 
+   transition: border-color 0.3s;
+   margin-bottom: 0;
+   margin: 0;
+ }
+ 
+ }
+
+ // styles/components/modal.module.scss
+
+.overlay {
+   position: fixed;
+   top: 0;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   background-color: rgba(0, 0, 0, 0.5);
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   z-index: 1000;
+ }
+ 
+ .modal {
+   background-color: white;
+   padding: 20px;
+   border-radius: 8px;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+   max-width: 500px;
+   width: 90%;
+ }
+
+ .closeButton {
+   @include exitBtn;
+   margin-left: 2px;
+ }
+ 

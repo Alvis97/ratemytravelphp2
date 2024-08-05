@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import CommentComponent from "./Comment";
-import postStyle from "../styles/components/post.module.scss";
 import { Comment2, Report } from "./Icons";
 import ReportModal from "./ReportModal";
+
+//Styles
+import postStyle from "../styles/components/post.module.scss";
 
 interface PostProps {
   post: {
@@ -98,8 +100,7 @@ const Post: React.FC<PostProps> = ({ post }) => {
       <ReportModal
         isOpen={isReportModalOpen}
         onClose={handleCloseReportModal}
-        onSubmit={handleSubmitReport}
-      />
+        onSubmit={handleSubmitReport} itemType={"post"} itemId={""}      />
 
       {showSuccessMessage && (
         <div className={postStyle.successMessage}>

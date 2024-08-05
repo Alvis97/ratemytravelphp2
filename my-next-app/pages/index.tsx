@@ -3,7 +3,7 @@ import Image from "next/image";
 import React from "react";
 import { GlobeCover } from "../components/globeCover";
 import Separation from "../components/Seperation";
-import { Globe, Mail, Talk, WorldMap } from "../components/Icons";
+import { Globe, Mail, Report2, Talk, WorldMap } from "../components/Icons";
 import Footer from "../components/Footer";
 
 //Style
@@ -39,12 +39,12 @@ export default function Home() {
             <h3>Add Countries in our travel tracker</h3>
           </div>
           <div className={homeStyle.CardParent}>
-            <WorldMap/>
-            <h3>Get recommendation on countries</h3>
+            <Report2/>
+            <h3>Report problematic behaviors</h3>
           </div>
         </div>
 
-        <Separation/>
+{/**  <Separation/>
         <div className={homeStyle.section3}>
         <Mail/>
           <div className={homeStyle.MailDiv}>
@@ -54,7 +54,8 @@ export default function Home() {
               <button className={homeStyle.CFAButton}>Join Email-List</button>
              </form>
           </div>
-        </div>
+        </div> */}
+      
 
         <Separation/>
 

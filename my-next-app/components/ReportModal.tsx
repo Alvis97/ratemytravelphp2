@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import modalStyle from "../styles/components/modal.module.scss";
 
 interface ReportModalProps {
