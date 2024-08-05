@@ -51,6 +51,10 @@ export default function RateMyTravel() {
       </Head>
       <main>
         <div className={RMTStyle.parent}>
+        <div className={RMTStyle.warning}>
+          <h1 className={RMTStyle.warningText}>This page is still in the making, It will work soon</h1> 
+          </div>
+
 
             <div className={RMTStyle.MapDiv}>
               <WorldMap/>

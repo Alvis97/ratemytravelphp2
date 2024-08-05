@@ -7,7 +7,7 @@
 .parent {
   height: 60px;
   position: fixed;
-  z-index: 3000;
+  z-index: 5000;
   width: 100vw;
   display: flex;
   flex-direction: column;
@@ -74,7 +74,7 @@
   justify-content: center;
   position: fixed;
   top: 49px;
-  z-index: 3000;
+  z-index: 5000;
 }
 
 .link,
