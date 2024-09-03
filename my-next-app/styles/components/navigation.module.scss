@@ -3,7 +3,7 @@
 
 .parent{
     width: 100vw;
-    height: 60px;
+    height: 70px;
     display: flex;
     justify-content:space-between;
     align-items: center;
@@ -99,6 +99,7 @@
 
   .CFAButton{
     @include CFAButton;
+    height: 55px;
   }
 
  

@@ -342,6 +342,31 @@ function Report2(props:Props){
   )
 }
 
+function Star(props:Props){
+  return(
+    <div {...props}>
+<svg className={iconStyles.Star} width="60" height="60" viewBox="0 0 73 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M22.989 26.3754C26.6171 26.3754 29.8414 24.0397 30.9659 20.5879C32.5828 15.6247 39.6081 15.6247 41.225 20.5879C42.3496 24.0397 45.5738 26.3754 49.2019 26.3754C54.4241 26.3754 56.5854 33.0509 52.3797 36.0984C49.4373 38.2306 48.2065 42.0179 49.332 45.4725C50.9391 50.4058 45.2646 54.5425 41.0294 51.4736C38.0906 49.3441 34.1003 49.3441 31.1615 51.4736C26.9264 54.5425 21.2518 50.4058 22.859 45.4725C23.9844 42.0179 22.7536 38.2306 19.8112 36.0984C15.6055 33.0509 17.7668 26.3754 22.989 26.3754Z" fill="url(#paint0_linear_104_2)" stroke="#C1840D" strokeWidth="3"/>
+<path d="M35 21L33.7703 23.9019C32.2036 27.5986 28.5779 30 24.5629 30H23" stroke="white" strokeWidth="3" strokeLinecap="round"/>
+<ellipse cx="29.2028" cy="38.3553" rx="4.89737" ry="4.37383" fill="#FF60B6" fillOpacity="0.59"/>
+<ellipse cx="43.3509" cy="38.3553" rx="4.89737" ry="4.37383" fill="#FF60B6" fillOpacity="0.59"/>
+<ellipse cx="31.7421" cy="35.3273" rx="2.35799" ry="2.35514" fill="black"/>
+<ellipse cx="40.086" cy="35.3273" rx="2.35799" ry="2.35514" fill="black"/>
+<path d="M33.1932 40.2056C35.0071 42.056 37.3651 41.7196 38.6348 40.2056" stroke="black" strokeWidth="3" strokeLinecap="round"/>
+<ellipse cx="31.0167" cy="34.1497" rx="0.544153" ry="0.504673" fill="white"/>
+<ellipse cx="39.3603" cy="34.1497" rx="0.544153" ry="0.504673" fill="white"/>
+<defs>
+<linearGradient id="paint0_linear_104_2" x1="3.99476e-07" y1="8.22675" x2="67.7035" y2="68.7897" gradientUnits="userSpaceOnUse">
+<stop offset="0.405" stopColor="#FFCB66"/>
+<stop offset="0.6" stopColor="#FFC046"/>
+<stop offset="1" stopColor="#99732A"/>
+</linearGradient>
+</defs>
+</svg>
+    </div>
+  )
+}
+
 export {
  LogoSmall,
  Mail,
@@ -355,5 +380,6 @@ export {
  Talk,
  WorldMap,
  Comment2,
- Report2
+ Report2,
+ Star
 };

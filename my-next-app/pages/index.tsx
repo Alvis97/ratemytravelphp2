@@ -19,7 +19,11 @@ export default function Home() {
       <main>
         <div className={homeStyle.section1}>
           <div className={homeStyle.textSection}>
-            <h1>Rate My Travel</h1>
+          <div className={homeStyle.headingContainer}>
+          <span className={homeStyle.span} style={{ '--i': 0 } as React.CSSProperties}>Rate </span>
+          <span className={homeStyle.span} style={{ '--i': 1 } as React.CSSProperties}>my </span>
+          <span className={homeStyle.span} style={{ '--i': 2 } as React.CSSProperties}>travel </span>
+        </div>
             <p>A online travel community for Women, Non Binary and Transgender (MF & FM) </p>
           </div>
           <div className={homeStyle.ImageSection}>

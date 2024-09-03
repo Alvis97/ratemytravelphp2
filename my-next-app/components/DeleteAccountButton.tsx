@@ -58,7 +58,7 @@ const DeleteAccountButton = () => {
 
   return (
     <div className={DeleteAccountStyle.deleteDiv}>
-      <p>Don't want to stick around? Deleted acounts will lose all data</p>
+      <p>Don&apos;t want to stick around? Deleted acounts will lose all data</p>
       <button 
       className={DeleteAccountStyle.DeleteButton} 
       onClick={handleConfirmDelete}>

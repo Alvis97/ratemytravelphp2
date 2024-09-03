@@ -169,6 +169,7 @@ const Account = () => {
       <div className={accountStyles.sibling}> 
         <div className={accountStyles.section1}>
             <div>
+              
               <img className={accountStyles.s1Image} src={`/images/${formData.avatar}`} alt="Profile" />
             </div>
             <div className={accountStyles.Child2}>

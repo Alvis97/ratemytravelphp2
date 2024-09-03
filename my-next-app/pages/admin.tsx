@@ -38,14 +38,6 @@ const AdminPage: React.FC = () => {
   const [comment, setComment] = useState<Comment | null>(null);
   const [postError, setPostError] = useState<string | null>(null);
 
-  if (status === 'loading') {
-    return <p>Loading...</p>;
-  }
-
-  if (!session || session.user.role !== 'admin') {
-    return <p>Access denied. Admins only.</p>;
-  }
-
   useEffect(() => {
     const fetchReports = async () => {
       try {
@@ -158,6 +150,14 @@ const AdminPage: React.FC = () => {
     );
   };
 
+  if (status === 'loading') {
+    return <p>Loading...</p>;
+  }
+
+  if (!session || session.user.role !== 'admin') {
+    return <p>Access denied. Admins only.</p>;
+  }
+
   return (
     <>
       <Head>
@@ -167,7 +167,7 @@ const AdminPage: React.FC = () => {
         <div className={AdminStyle.parent}>
           <div className={AdminStyle.textSection}>
             <h1 className={AdminStyle.h1}>Welcome back Admin!</h1>
-            <p className={AdminStyle.p}>Let's keep our community friendly</p>
+            <p className={AdminStyle.p}>Let&apos;s keep our community friendly</p>
           </div>
 
            {/** Print report table */}

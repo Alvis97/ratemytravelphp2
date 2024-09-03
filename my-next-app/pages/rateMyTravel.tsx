@@ -51,9 +51,12 @@ export default function RateMyTravel() {
       </Head>
       <main>
         <div className={RMTStyle.parent}>
-        <div className={RMTStyle.warning}>
+          {/**
+           *    <div className={RMTStyle.warning}>
           <h1 className={RMTStyle.warningText}>This page is still in the making, It will work soon</h1> 
           </div>
+          */}
+     
 
 
             <div className={RMTStyle.MapDiv}>
@@ -113,7 +116,7 @@ export default function RateMyTravel() {
                         <option value="CF">Central African Republic</option>
                         <option value="CG">Republic of Congo</option>
                         <option value="CH">Switzerland</option>
-                        <option value="CI">Côte d'Ivoire</option>
+                        <option value="CI">Côte d&apos;Ivoire</option>
                         <option value="BJ">Chile</option>
                         <option value="CM">Cameroon</option>
                         <option value="CN">China</option>
@@ -181,7 +184,7 @@ export default function RateMyTravel() {
                         <option value="KW">Kuwait</option>
                         <option value="KZ">Kazakhstan</option>
 
-                        <option value="LA">Lao People's Democratic Republic</option>
+                        <option value="LA">Lao People&apos;s Democratic Republic</option>
                         <option value="LB">Lebanon</option>
                         <option value="LK">Sri Lanka</option>
                         <option value="LR">Liberia</option>

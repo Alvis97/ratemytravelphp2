@@ -105,9 +105,38 @@
   }
 
 
+  .ImageDiv {
+    width: 686px;
+    height: 475px;
+    position: relative;
+  }
+
   .globeHomepage {
     width: 686px; 
     height: 475px;
+    position: relative;
+  }
+
+  .StarGroup{
+    position: absolute;
+    z-index: 2000;
+    left: -40px;
+    top: -50px;
+    animation: StarBounce 3s ease-in-out infinite;
+  }
+
+  @keyframes StarBounce {
+    0% {
+      transform: translateY(0px);
+    }
+
+    50% {
+      transform: translateY(-20px);
+    }
+
+    100% {
+      transform: translateY(0px);
+    }
   }
 
   @media screen and (max-width: 1055px) {
@@ -238,6 +267,29 @@
       width: 435px;
       height: 236px;
     }
+  }
+
+
+
+  .Star {
+    margin: 0 -7px 0 0;
+    
+    &:hover {
+      animation: starMove 0.5s ease-in-out forwards;
+    }
+  }
+
+  @keyframes starMove {
+    0% {
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: rotate(-30deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+
   }
 
 

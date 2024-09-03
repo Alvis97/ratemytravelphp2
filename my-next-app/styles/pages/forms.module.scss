@@ -2,7 +2,7 @@
 @import '../mixins';
 
 .loginForm{
-  height: fit-content;
+  height: 600px;
   width: 900px;
   margin-top: 50px;
   padding: 30px;
@@ -39,12 +39,73 @@
   box-sizing: border-box;
 }
 
+.scroll {
+  margin: 4px, 4px;
+  padding: 4px;
+  width: 280px;
+  height: 300px;
+  margin-bottom: 20px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  text-align: justify;
+}
+
+.popup {
+  font-family: Inter;
+  font-size: 12px;
+  margin-top: 0;
+  margin-bottom: 10px;
+  cursor: pointer;
+  text-decoration: underline;
+  position: relative; /* Needed for positioning the span */
+}
+
+.popupSpan {
+  font-family: Inter;
+  font-size: 12px;
+  margin-top: 0;
+  padding: 10px;
+  text-align: left;
+  @include bigShadow;
+  border-radius: var(--bigRadius);
+  margin-bottom: 10px;
+  background-color: rgb(var(--yellow));
+  text-decoration: none;
+  display: none; /* Initially hidden */
+  position: absolute; /* Positioned relative to the .popup */
+  top: 100%; /* Adjust to your needs */
+  left: 0; /* Adjust to your needs */
+}
+
+.popup:hover .popupSpan {
+  display: inline-block; /* Display on hover */
+}
+
+.guideContainer {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  width: 350px;
+}
+
+.checkbox {
+  margin: 0;
+  width: 25px;
+}
+
+
+.guideLines {
+  font-size: 12px;
+  font-family: Inter;
+  margin: 0;
+}
+
 .CFAButton {
-   @include CFAButton;
-   margin-bottom: 5px;
-   margin-top: 0;
-   width: 100%;
-} 
+ @include CFAButton2;
+ width: 100%;
+ text-align: center;
+}
+
 
 .devider{
   display: flex;
@@ -181,7 +242,7 @@
 
  .note{
    font-size: 12px;
-   margin-bottom: 10px;
+   margin-bottom: 2px;
  }
 
  .socialIcons{

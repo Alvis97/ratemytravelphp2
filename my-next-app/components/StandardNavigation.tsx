@@ -2,10 +2,11 @@
 import { signIn, signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
 import React from 'react';
+import { LogoSmall, Star } from './Icons';
 
 //Style
 import navigationStyle from "../styles/components/navigation.module.scss";
-import { LogoSmall } from './Icons';
+
 
 const StandardNavigation = () => {
   const { data: session, status } = useSession();
@@ -63,7 +64,7 @@ const StandardNavigation = () => {
                 <>
                 <Link href="/login" className={navigationStyle.linkBtn}>Login</Link>
                   <span className={navigationStyle.span}>|</span>
-                  <Link href="/signup" className={navigationStyle.CFAButton}>Join Community</Link>
+                  <Link href="/signup" className={navigationStyle.CFAButton}> <Star/> Community</Link>
                 </>
               </div>
           </div>

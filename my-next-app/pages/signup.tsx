@@ -99,7 +99,11 @@ const SignUp = () => {
 
       <div className={formStyle.child2}>
         <h2 className={formStyle.h2}>Sign Up</h2>
+      
+
+       
           <form onSubmit={handleSubmit}>
+          <div className={formStyle.scroll}>
 
             <input
               type="text"
@@ -162,7 +166,8 @@ const SignUp = () => {
             </select><br />
             </div>
 
-            <p className={formStyle.note}>*This app is for non-Cis men</p>
+            <p className={formStyle.note}>This app is for non-Cis men</p>
+            <p className={formStyle.popup}>Why do i need to tell my gender/pronounce? <span className={formStyle.popupSpan}>This application requires gender and pronounce in order to avoid cis men join the community. your Pronounce will be displayed inside the community to avoid other users to use gender steriotypes</span> </p>
             {errors.pronounce && <p className={formStyle.error}>{errors.pronounce}</p>}
             {errors.gender && <p className={formStyle.error}>{errors.gender}</p>}
 
@@ -243,13 +248,24 @@ const SignUp = () => {
                   </label>
                 
                 </div><br />
+
+                <div className={formStyle.guideContainer}>
+                  <input className={formStyle.checkbox} type="checkbox" name="guidelines" id="guidelines"/>
+                  <label className={formStyle.guideLines} htmlFor="guidelines">I have read and agree to the guidelines</label>
+                </div>
+                </div>
+
+               
+
                 <button type="submit" className={formStyle.CFAButton}>Sign Up</button>
+  
               </form>
               <div className={formStyle.devider}><hr className={formStyle.hr}/><p className={formStyle.p}>or</p><hr className={formStyle.hr}/></div>
            <div className={formStyle.socialLogin}>
            <button className={formStyle.fbButton2}><Fb/> </button>
            <button className={formStyle.GoogleButton2}><Google/> </button>
            </div>
+          
       </div>
                
     </div>
